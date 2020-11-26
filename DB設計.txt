@@ -1,0 +1,189 @@
+CREATE DATABASE shopping_db DEFAULT CHARACTER SET utf8;
+
+GRANT ALL PRIVILEGES ON portfolio_1.* TO portfolio_1@'localhost' IDENTIFIED BY 'portfolio_1' WITH GRANT OPTION;
+
+use portfolio_1;
+
+//商品テーブル
+create table item(
+  item_id int unsigned not null auto_increment,
+  item_name varchar(100) not null,
+  detail text not null,
+  price DECIMAL(10,3) unsigned not null,
+  image varchar(50) not null,
+  ctg_id tinyint unsigned not null,
+  regist_date datetime not null,
+  update_date datetime,
+  delete_date datetime,
+  delete_flg tinyint(1) unsigned not null default 0,
+  primary key(item_id),
+  index item_idx(ctg_id)
+);
+//デシマル... DECIMAL(最大桁数、小数点以下の桁数)
+//インデックス... index。カラムでは無い。データ検索速度を向上させるために、どの行がどこにあるか示したもの。use
+
+//カート(取引)
+create table cart(
+  crt_id int unsigned not null auto_increment,
+  customer_no int unsigned not null,
+  item_id int unsigned not null,
+  num tinyint(1) unsigned not null default 1,
+  regist_date datetime not null,
+  update_date datetime,
+  delete_date datetime,
+  delete_flg tinyint(1) unsigned not null default 0,
+  primary key(crt_id),
+  index crt_idx(customer_no, delete_flg)
+);
+
+//カテゴリー
+create table category(
+  ctg_id tinyint unsigned not null auto_increment,
+  category_name varchar(100) not null,
+  regist_date datetime not null,
+  update_date datetime,
+  delete_date datetime,
+  delete_flg tinyint(1) unsigned not null default 0,
+  primary key(ctg_id)
+);
+
+//顧客の認識(セッション)
+create table session(
+  customer_no int unsigned not null auto_increment,
+  session_key varchar(32),
+  regist_date datetime not null,
+  update_date datetime,
+  delete_date datetime,
+  delete_flg tinyint(1) unsigned not null default 0,
+  primary key(customer_no)
+);
+
+create table member (
+  mem_id int unsigned not null auto_increment,
+  family_name varchar(20) not null,
+  first_name varchar(20) not null,
+  family_name_kana varchar(20) not null,
+  first_name_kana varchar(20) not null,
+  email varchar(255) not null,
+  user_id varchar(255) not null,
+  password varchar(255) not null,
+  sex tinyint(1) unsigned not null,
+  year varchar(4) not null,
+  month varchar(2) not null,
+  day varchar(2) not null,
+  zip1 varchar(3) not null,
+  zip2 varchar(4) not null,
+  address varchar(100) not null,
+  tel1 varchar(6) not null,
+  tel2 varchar(6) not null,
+  tel3 varchar(6) not null,
+  contents text not null,
+  traffic varchar(20) not null,
+  regist_date datetime not null,
+  update_date datetime,
+  delete_date datetime,
+  delete_flg tinyint(1) unsigned not null default 0,
+  primary key(mem_id)
+);
+
+image varchar(50) not null,   画像
+crt_id
+item_id
+num
+
+
+create table postcode (
+  jis varchar(5),
+  old_zip varchar(5),
+  zip varchar(7),
+  pref_kana varchar(100),
+  city_kana varchar(100),
+  town_kana varchar(100),
+  pref varchar(100),
+  city varchar(100),
+  town varchar(100),
+  comment1 tinyint(1) unsigned,
+  comment2 tinyint(1) unsigned,
+  comment3 tinyint(1) unsigned,
+  comment4 tinyint(1) unsigned,
+  comment5 tinyint(1) unsigned,
+  comment6 tinyint(1) unsigned
+);
+
+LOAD DATA INFILE '/Applications/mamp/htdocs/DT/portfolio_1/KEN_ALL.CSV' INTO TABLE `postcode` FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"';
+
+
+ログイン機能実装後のセッションテーブル
+create table loginsession(
+  mem_id int unsigned not null,
+  user_id varchar(100) not null,
+  session_key varchar(32),
+  regist_date datetime not null,
+  update_date datetime,
+  delete_date datetime,
+  delete_flg tinyint(1) unsigned not null default 0,
+  primary key(mem_id)
+);
+
+いいねのテーブル
+create table likes(
+  id int unsigned not null auto_increment,
+  item_id int unsigned not null,
+  mem_id int unsigned not null,
+  regist_date datetime not null,
+  update_date datetime,
+  delete_date datetime,
+  delete_flg tinyint(1) unsigned not null default 0,
+  primary key(like_id)
+);
+
+お問い合わせを管理するテーブル
+create table contact(
+  id int unsigned not null auto_increment,
+  mem_id int unsigned not null,
+  user_id varchar(255) not null,
+  email varchar(255) not null,
+  subject varchar(255) not null,
+  body text not null,
+  regist_date datetime not null,
+  update_date datetime,
+  delete_date datetime,
+  delete_flg tinyint(1) unsigned not null default 0,
+  primary key(id)
+);
+
+全ての注文履歴を管理するテーブル
+create table order(
+  order_id int unsigned not null auto_increment,
+  item_id int unsigned not null,
+  iten_cnt int not null,
+  total_price DECIMAL(10,3) unsigned not null, 
+  mem_id int unsigned not null,
+  regist_date datetime not null,
+  update_date datetime,
+  delete_date datetime,
+  delete_flg tinyint(1) unsigned not null default 0,
+  primary key(order_id)
+);
+
+
+以下、INSERT--------------------------------------
+
+INSERT INTO category(ctg_id, category_name, regist_date, delete_flg) VALUES ( 1, '野菜', NOW(), '');
+INSERT INTO category(ctg_id, category_name, regist_date, delete_flg) VALUES ( 2, '果物', NOW(), '');
+INSERT INTO category(ctg_id, category_name, regist_date, delete_flg) VALUES ( 3, '飲料', NOW(), '');
+
+
+
+INSERT INTO item(item_id, item_name, detail, price, image, ctg_id, regist_date, delete_flg) VALUES ( 1,  'たまねぎ', '染色体数は2n=16。生育適温は20℃前後で、寒さには強く氷点下でも凍害はほとんど見られないが、25℃以上の高温では生育障害が起こる。', 100, 'tamanegi.jpg', 1 , NOW(), '');
+INSERT INTO item(item_id, item_name, detail, price, image, ctg_id, regist_date, delete_flg) VALUES ( 2,  'にんじん', '細長い東洋系品種と、太く短い西洋系品種の2種類に大別され、ともに古くから薬や食用としての栽培が行われてきた。', 150, 'ninjin.jpg', 1 , NOW(), '');
+INSERT INTO item(item_id, item_name, detail, price, image, ctg_id, regist_date, delete_flg) VALUES ( 3,  'ピーマン', 'ピーマン自体はトウガラシの品種の一つであり、果実は肉厚でカプサイシンを含まない。', 50, 'pi-man.jpg', 1 , NOW(), '');
+INSERT INTO item VALUES ( 4,  'なす',     '世界の各地で独自の品種が育てられている。加賀茄子などの一部例外もあるが日本においては南方ほど長実または大長実で、北方ほど小実品種となる。', 120, 'nasu.jpg', 1 , NOW(), '');
+INSERT INTO item(item_id, item_name, detail, price, image, ctg_id, regist_date, delete_flg) VALUES ( 5,  'みかん', '日本の代表的な果物で、バナナのように、素手で容易に果皮をむいて食べることができるため、冬になれば炬燵の上にミカンという光景が一般家庭に多く見られる。', 30, 'mikan.jpg', 2 , NOW(), '');
+INSERT INTO item(item_id, item_name, detail, price, image, ctg_id, regist_date, delete_flg) VALUES ( 6,  'りんご', '現在日本で栽培されているものは、明治時代以降に導入されたもの。病害抵抗性、食味、収量などの点から品種改良が加えられる。', 100, 'ringo.jpg', 2 , NOW(), '');
+INSERT INTO item(item_id, item_name, detail, price, image, ctg_id, regist_date, delete_flg) VALUES ( 7,  'ぶどう', '葉は両側に切れ込みのある15 - 20cmほどの大きさで、穂状の花をつける。', 130, 'budou.jpg', 2 , NOW(), '');
+INSERT INTO item(item_id, item_name, detail, price, image, ctg_id, regist_date, delete_flg) VALUES ( 8,  'いちご', 'イチゴとして流通しているものは、ほぼ全てオランダイチゴである。', 250, 'ichigo.jpg', 2 , NOW(), '');
+INSERT INTO item(item_id, item_name, detail, price, image, ctg_id, regist_date, delete_flg) VALUES ( 9,  'コーラ',             '複数あるコーラ飲料製造社ではこれらの香味料以外にその会社独自の香味料を加えることで独自の製品として開発している。', 120, 'cola.jpg', 3 , NOW(), '');
+INSERT INTO item(item_id, item_name, detail, price, image, ctg_id, regist_date, delete_flg) VALUES ( 10, 'カルピス',           '企業としてのカルピスの創業者は、僧侶出身の三島海雲。創業初期は国分グループだった。', 120, 'karupisu.jpg', 3 , NOW(), '');
+INSERT INTO item(item_id, item_name, detail, price, image, ctg_id, regist_date, delete_flg) VALUES ( 11, 'ウーロン茶',         '烏龍茶（ウーロンちゃ）は、中国茶のうち青茶（せいちゃ、あおちゃ）と分類され、茶葉を発酵途中で加熱して発酵を止め、半発酵させた茶である。', 110, 'u-rontya.jpg', 3 , NOW(), '');
+INSERT INTO item(item_id, item_name, detail, price, image, ctg_id, regist_date, delete_flg) VALUES ( 12, 'ミネラルウォーター', 'ミネラルウォーター（Mineral water）とは、容器入り飲料水のうち、地下水を原水とするものを言う。', 1200, 'water.jpg', 3 , NOW(), '');
