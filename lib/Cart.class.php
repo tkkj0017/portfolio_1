@@ -16,12 +16,12 @@ class Cart{
     $this->db = $db;
   }
 
-  //カートに登録する(誰が($customer_no)、何を($item_id)、いつ(regist_date))
+  //カートに登録する(誰が($customer_no)、何を($item_id)、何個(num)、いつ(regist_date))
 
-  public function insCartData($customer_no, $item_id){
+  public function insCartData($mem_id, $item_id){
     $table = ' cart ';
     $insData = [
-      'customer_no' => $customer_no,
+      'mem_id' => $mem_id,
       'item_id' => $item_id, 
       'regist_date' => date("Y-m-d H:i:s")
     ];
@@ -29,7 +29,7 @@ class Cart{
   }
 
   //カートの情報を取得する(必要な情報は、誰が($customer_no)。必要な商品情報は名前、商品画像、金額)
-  public function getCartData($customer_no){
+  public function getCartData($mem_id){
     // SELECT
     // c.crt_id,
     // i.item_id,
@@ -46,8 +46,8 @@ class Cart{
     // c.customer_no = ? AND c.delete_flg = ? ';
     $table = ' cart c LEFT JOIN item i ON c.item_id = i.item_id ';
     $column = ' c.crt_id, i.item_id, i.item_name, i.price, i.image';
-    $where = ' c.customer_no = ? AND c.delete_flg = ?';
-    $arrVal = [$customer_no, 0];
+    $where = ' c.mem_id = ? AND c.delete_flg = ?';
+    $arrVal = [$mem_id, 0];
 
     return $this->db->select($table, $column, $where, $arrVal);
   }
@@ -63,7 +63,7 @@ class Cart{
   }
 
   //合計金額とアイテム数を取得する
-  public function getItemAndSumPrice($customer_no){
+  public function getItemAndSumPrice($mem_id){
     // 合計金額
     // SELECT
     // SUM(i.price) AS totalPrice ";
@@ -79,8 +79,8 @@ class Cart{
     // 合計金額取得
     $table = " cart c LEFT JOIN item i ON c.item_id = i.item_id ";
     $column = " SUM(i.price) AS totalPrice ";
-    $where = ' c.customer_no = ? AND c.delete_flg = ?';
-    $arrWhereVal = [$customer_no, 0];
+    $where = ' c.mem_id = ? AND c.delete_flg = ?';
+    $arrWhereVal = [$mem_id, 0];
 
     $res = $this->db->select($table, $column, $where, $arrWhereVal);
     $price = ($res !== false && count($res) !== 0) ? $res[0]['totalPrice'] : 0;

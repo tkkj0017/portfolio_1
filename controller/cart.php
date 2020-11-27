@@ -33,15 +33,16 @@ $twig = new \Twig_Environment($loader, [
 // $ses->checkSession();
 // $logses->checkSession(); 
 
-$customer_no = $_SESSION['mem_id'];
+$mem_id = $_SESSION['mem_id'];
 
-// item_idを取得する
+// item_id、crt_idを取得する
 $item_id = (isset($_GET['item_id']) === true && preg_match('/^\d+$/', $_GET['item_id']) === 1) ? $_GET['item_id'] : '';
 $crt_id = (isset($_GET['crt_id']) === true && preg_match('/^\d+$/', $_GET['crt_id']) === 1) ? $_GET['crt_id'] : '';
 
+
 // item_idが設定されていれば、ショッピングカートに登録する
 if($item_id!==''){
-  $res = $cart->insCartData($customer_no, $item_id);
+  $res = $cart->insCartData($mem_id, $item_id);
   //登録に失敗した場合、エラーページを表示する
   if($res ===false){
     echo "商品購入に失敗しました。";
@@ -56,10 +57,10 @@ if($crt_id !== ''){
 
 
 // カート情報を取得する
-$dataArr = $cart->getCartData($customer_no);
+$dataArr = $cart->getCartData($mem_id);
 // アイテム数と合計金額を取得する。listは配列をそれぞれの変数に分ける
 // $cartSumAndNumData = $cart->getItemAndSumPrice($customer_no);
-list($sumNum, $sumPrice) = $cart->getItemAndSumPrice($customer_no);
+list($sumNum, $sumPrice) = $cart->getItemAndSumPrice($mem_id);
 
 // カートの中身が無い時に0と表示できるようにする
 if($sumNum === null){
