@@ -1,6 +1,11 @@
 
+
 li{
   list-style-type: none;
+}
+
+body{
+  text-align: center;
 }
 
 .inner{
