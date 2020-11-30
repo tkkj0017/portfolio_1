@@ -18,11 +18,12 @@ class Cart{
 
   //カートに登録する(誰が($customer_no)、何を($item_id)、何個(num)、いつ(regist_date))
 
-  public function insCartData($mem_id, $item_id){
+  public function insCartData($mem_id, $item_id, $num){
     $table = ' cart ';
     $insData = [
       'mem_id' => $mem_id,
       'item_id' => $item_id, 
+      'num' => $num,
       'regist_date' => date("Y-m-d H:i:s")
     ];
     return $this->db->insert($table, $insData);

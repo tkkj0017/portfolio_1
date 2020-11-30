@@ -40,4 +40,12 @@ class initMaster{
     $trafficArr = ['徒歩', '自転車', 'バス', '電車', '車・バイク'];
     return $trafficArr;
   }
+
+  public static function getItemNum(){
+    for($i = 1; $i < 101; $i++){
+      $num = sprintf("%d", $i);
+      return $num;
+    }
+  } 
+
 }

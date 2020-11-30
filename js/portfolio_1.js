@@ -4,6 +4,7 @@ $(function(){
   /* ショッピングカートに入れるがクリックされた時 */
   $("#cart_in").click(function(){
     var item_id = $("#item_id").val();
+    var num = $("#num").val();
     location.href = entry_url + "controller/cart.php?item_id=" + item_id;
   });
   
@@ -33,7 +34,7 @@ $(function(){
             $('#address').val(data);
           }
         },
-        function(data){
+        function(){
           alert("読み込みに失敗しました。")
         },
       );
@@ -65,7 +66,7 @@ $(function(){
           $this.toggleClass('active');
         }
       },
-      function(data){
+      function(){
         alert("読み込みに失敗しました。")
       },
     );

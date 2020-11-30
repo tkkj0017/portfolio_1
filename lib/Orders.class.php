@@ -19,7 +19,7 @@ class Orders{
   // 売上データを新たに追加する
   public function insertOrder(){
 
-    $table = ' order ';
+    $table = ' orders ';
     $dataArr = [
       
     ];
