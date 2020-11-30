@@ -24,6 +24,7 @@
 + レスポンシブデザイン実装
 + AWS基礎習得(Udemy)
 + Docker入門
++ Vue.js
 
 ### Laravel青本
 
@@ -31,9 +32,9 @@
 
 ### その他
 
-  ✅ VScodeに"php cs fixer"の導入(C)
-  + PhinderによるPHPのLint((Linter Formatter)
-    + https://qiita.com/ktr1211/items/167ca5dd5545c8cac5ea
+✅ VScodeに"php cs fixer"の導入(C)
++ PhinderによるPHPのLint((Linter Formatter)
+  + https://qiita.com/ktr1211/items/167ca5dd5545c8cac5ea
 
 ### Portfolio_1
     

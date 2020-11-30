@@ -55,7 +55,6 @@ if($crt_id !== ''){
   $res = $cart->delCartData($crt_id);
 }
 
-
 // カート情報を取得する
 $dataArr = $cart->getCartData($mem_id);
 // アイテム数と合計金額を取得する。listは配列をそれぞれの変数に分ける
