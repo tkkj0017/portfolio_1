@@ -45,6 +45,7 @@ div#nav a{
 
 div#nav a:hover{
   background-color: #2f377e;
+  transition: 0.2s;
 }
 
 #wrapper{

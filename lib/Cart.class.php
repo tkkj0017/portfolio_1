@@ -29,6 +29,10 @@ class Cart{
     return $this->db->insert($table, $insData);
   }
 
+  public function updateCartData(){
+    $table = ' cart ';
+  }
+
   //カートの情報を取得する(必要な情報は、誰が($customer_no)。必要な商品情報は名前、商品画像、金額)
   public function getCartData($mem_id){
     // SELECT
@@ -46,8 +50,9 @@ class Cart{
     // WHERE
     // c.customer_no = ? AND c.delete_flg = ? ';
     $table = ' cart c LEFT JOIN item i ON c.item_id = i.item_id ';
-    $column = ' c.crt_id, i.item_id, i.item_name, i.price, i.image';
-    $where = ' c.mem_id = ? AND c.delete_flg = ?';
+    $column = ' c.crt_id, c.num, i.item_id, i.item_name, i.price, i.image';
+    // $where = ' c.mem_id = ? AND c.delete_flg = ? GROUP BY i.item_id';
+    $where = ' c.mem_id = ? AND c.delete_flg = ? ';
     $arrVal = [$mem_id, 0];
 
     return $this->db->select($table, $column, $where, $arrVal);
@@ -63,8 +68,8 @@ class Cart{
     return $this->db->update($table, $delData, $where, $arrWhereVal);
   }
 
-  //合計金額とアイテム数を取得する
-  public function getItemAndSumPrice($mem_id){
+  //合計金額と合計アイテム数を取得する
+  public function getSumPriceNum($mem_id){
     // 合計金額
     // SELECT
     // SUM(i.price) AS totalPrice ";
@@ -79,7 +84,7 @@ class Cart{
     
     // 合計金額取得
     $table = " cart c LEFT JOIN item i ON c.item_id = i.item_id ";
-    $column = " SUM(i.price) AS totalPrice ";
+    $column = " SUM(i.price) * c.num AS totalPrice ";
     $where = ' c.mem_id = ? AND c.delete_flg = ?';
     $arrWhereVal = [$mem_id, 0];
 
@@ -95,8 +100,25 @@ class Cart{
     return [$num, $price];
   }
 
+  // 商品ごとの合計金額とアイテム数を取得する
+  public function getItemNumPrice(){
+    $table = " cart c LEFT JOIN item i ON c.item_id = i.item_id ";
+    $column = " SUM(i.price) AS totalPrice ";
+    $where = ' c.mem_id = ? AND c.delete_flg = ?';
+    
+  }
+
+  // 数量変更があった時にデータを書き換える
+  public function numUpdate($crt_id, $num){
+    $table = 'cart';
+    $dataArr = ['num' => $num];
+    $where = 'crt_id';
+    $arrWhereVal = [$crt_id];
+    return $this->db->update($table, $dataArr, $where, $arrWhereVal);
+  }
+
   // お気に入り(いいねする)  itemクラスの方??
 
 
-  // 購入する
+
 }

@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}js/portfolio_1.js"> </script>
+    <link href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+    <title>退会確認</title>
+  </head>
+  <body>
+    <div id="nav">
+      {% include 'gnav.html.twig' %}
+    </div>
+    <h3> 本当に退会しますか？ </h3>
+    <form method="post" action="resign.php">
+      <input type="submit" name="no" value="いいえ" formaction="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/mypage.php?mem_id={{session.mem_id}}">
+      <input type="submit" name="resign_complete" value="はい、退会します" formaction="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/resign.php?mem_id={{session.mem_id}}">
+    </form>
+  </body>
+</html>

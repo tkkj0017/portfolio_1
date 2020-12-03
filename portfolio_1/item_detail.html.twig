@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}js/portfolio_1.js"> </script>
+    <link href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+    {# Font Awesome #}
+    <script src="https://kit.fontawesome.com/fd25b5e20c.js" crossorigin="anonymous"></script>
+    <title>商品詳細</title>
+  </head>
+  <body>
+    <div id="nav">
+      {% include 'gnav.html.twig' %}
+    </div>
+    <input type="hidden" name="entry_url" value="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}" id="entry_url">
+    <div id="wrapper">
+      {% include 'category_menu.html.twig' %}
+      <div id="item_detail">
+        <div class="image">
+          <img src="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}img/{{itemData.image}}" alt="{{itemData.item_name}}">
+        </div>
+        <div class="detail">
+          <dl>
+            <dt>商品名</dt>
+            <dd>{{itemData.item_name}}</dd>
+            <dt>詳細</dt>
+            <dd>{{itemData.detail}}</dd>
+            <dt>価格</dt>
+            <dd>&yen;{{itemData.price|number_format(0, '.', ',')}}</dd>
+            <dt>数量</dt>
+            <dd><input type="number"  name="num" id="num" min="0" max="100" value="1">点</dd>
+            <input type="hidden" name="item_id" id="item_id" value="{{itemData.item_id}}">
+          </dl>
+        </div>
+        <div class="cart_in">
+          <input type="button" name="back" value="商品一覧へ戻る" onclick="history.back(); return false;">
+          {# ログイン時のみ表示 #}
+          {% if session.login_flg == '1' %}
+            {# カートに入れる #}
+            <input type="button" name="cart_in" value="ショッピングカートへ入れる" id="cart_in">
+            {# お気に入り登録をする #}
+            <div id="like">
+              <i class="fas fa-heart fa-lg"></i><span>{{likeCnt}}</span>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </body> 

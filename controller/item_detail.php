@@ -57,12 +57,13 @@ if(!empty($_SESSION)) {
 }
 
 $context = [];
+$num = '';
 $context['cateArr'] = $cateArr;
-$context['itemData'] = $itemData[0]; 
+$context['itemData'] = $itemData[0];
+$context['num'] = $num;
 // var_dump($itemData);
 $context['session'] = $_SESSION;
 $context['likeCnt'] = $likeCnt;
-
 
 $template = $twig->loadTemplate('item_detail.html.twig');
 $template->display($context);

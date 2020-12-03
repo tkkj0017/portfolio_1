@@ -56,7 +56,6 @@ class Member{
     $dataArr = ['email' => '', 'delete_date' => date("Y-m-d H:i:s") ,'delete_flg' => 1];
     $where = ' mem_id = ? ';
     $arrWhereVal = [$mem_id];
-
     return $this->db->update($table, $dataArr, $where, $arrWhereVal);
   }
 

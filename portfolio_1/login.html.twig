@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+    <title>ログイン完了</title>
+  </head>
+  <body>
+    <div id="nav">
+      {% include 'gnav.html.twig' %}
+    </div>
+    <div>
+      ようこそ {{dataArr.user_id}} さん
+    </div>
+    <div>
+      <input type="submit" name="logout" value="ログアウトする">
+    </div>
+  </body>
+</html>

@@ -40,6 +40,8 @@ if($_POST['item_search'] !== false){
   $res = $itm->searchItem($ctg_id , $_POST['search_word']);
   if($res !== false){
     $dataArr = $res;
+    // $count = strval(count($res));
+
   }else{
     // 検索ワードがヒットしなかった場合
     $errArr = '検索結果は0件です';
@@ -52,6 +54,7 @@ if($_POST['item_search'] !== false){
 $context = [];
 $context['cateArr'] = $cateArr;
 $context['dataArr'] = $dataArr;
+// $context['count'] = $count;
 $context['errArr'] = $errArr;
 $context['session'] = $_SESSION;
 $context['post'] = $_POST;

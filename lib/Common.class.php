@@ -88,10 +88,8 @@ class Common{
         $col = ' * ';
         $where = ' email = ? ';
         $arrVal = [$this->dataArr['email']];
-        $limit = ' 1 ';
 
         // メールアドレスが重複していないかチェック
-        $this->db->setLimitOff($limit);
         if($this->db->select($table, $col, $where, $arrVal)){
           $this->errArr['email'] = 'このメールアドレスは既に登録されています';
         }
@@ -115,12 +113,10 @@ class Common{
         $col = ' * ';
         $where = ' email = ? ';
         $arrVal = [$this->dataArr['email']];
-        $limit = ' 1 ';
         
         // メールアドレスが重複していないかチェック(自分のメールアドレスを除く)
-        $this->db->setLimitOff($limit);
         $res = $this->db->select($table, $col, $where, $arrVal);
-        if($res !== false && $res[0]['mem_id'] !== $_SESSION['mem_id']){
+        if(isset($res) && count($res) > 0 && $res[0]['mem_id'] !== $_SESSION['mem_id']){
             $this->errArr['email'] = 'このメールアドレスは既に登録されています';
         }
 

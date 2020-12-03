@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}js/portfolio_1.js"> </script>
+    <link href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+    <title>会員登録</title>
+  </head>
+  <body>
+    <div id="nav">
+      {% include 'gnav.html.twig' %}
+    </div>
+    <input type="hidden" name="entry_url" id="entry_url" value="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}">
+    <h2>お問い合わせフォーム</h2>
+    <form method="post" action="contact_confirm.php">
+    <table>
+    <tr>
+      <th>件名<span class="red">*</span></th>
+      <td>
+      <input type="text" name="subject" value="{{dataArr.subject}}">
+      {% if errArr.subject | length > 0 %}<br><span class="red">{{errArr.subject}}</span>{% endif %}
+      </td>
+    </tr>
+    <tr>
+      <th>本文<span class="red">*</span></th>
+      <td><textarea name="body" rows="4" cols="40">{{dataArr.body}}</textarea>
+      {% if errArr.body | length > 0 %}<br><span class="red">{{errArr.body}}</span>{% endif %}
+      </td>
+    </tr>         
+    </table>
+    <div>
+      <input type="submit" name="contact" value="確認画面へ">
+    </div>
+    </form>
+  </body>
+</html>
