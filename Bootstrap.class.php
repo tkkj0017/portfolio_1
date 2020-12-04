@@ -22,7 +22,7 @@ class Bootstrap{
 
   // heroku環境
   const DB_HOST = 'zus-cdbr-east-02.cleardb.com';
-  const DB_NAME = 'heroku_d58340816acde8e?reconnect=true';
+  const DB_NAME = 'heroku_d58340816acde8e';
   const DB_USER = 'b05820f52b8ee9';
   const DB_PASS = 'c1b7829a';
   const DB_TYPE = 'mysql';

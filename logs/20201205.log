@@ -1,0 +1,2 @@
+[SQL_LOG:2020-12-05 08:26:32]: SELECT ctg_id, category_name  FROM  category     []
+[SQL_LOG:2020-12-05 08:26:32]: SELECT item_id, item_name, price, image, ctg_id  FROM  item     []
