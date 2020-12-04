@@ -155,6 +155,7 @@ create table contact(
 全ての注文履歴を管理するテーブル
 create table orders(
   order_id int unsigned not null auto_increment,
+  order_key varchar(255) not null,
   item_id int unsigned not null,
   iten_cnt int not null,
   total_price DECIMAL(10,3) unsigned not null, 

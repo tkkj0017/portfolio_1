@@ -1,11 +1,11 @@
 <?php
 
-//トップページのプログラム
+//商品検索のプログラム
 
 /*
-*ファイルパス /Applications/MAMP/htdocs/DT/portfolio_1/controller/item_list.php
-ファイル名 top.php
-アクセスURL http://localhost/DT/portfolio_1/controller/item_list.php
+*ファイルパス /Applications/MAMP/htdocs/DT/portfolio_1/controller/item_search.php
+ファイル名 item_search.php
+アクセスURL http://localhost/DT/portfolio_1/controller/item_search.php
 */
 
 namespace portfolio_1;
@@ -27,28 +27,37 @@ $twig = new \Twig_Environment($loader, [
   'cache' => Bootstrap::CACHE_DIR
 ]);
 
-
-// SessionKeyを見て、DBへの登録状態をチェックする
-// customer_idに自分の情報を入れてあげる
-// $loginses->checkSession();
-
-$ctg_id = (isset($_GET['ctg_id']) === true && preg_match('/^[0-9]+$/', $_GET['ctg_id']) === 1) ? $_GET['ctg_id'] : '';
-
 // エラ〜メッセージの定義(商品検索用)
 $errArr = [];
 
+$ctg_id = (isset($_GET['ctg_id']) === true && preg_match('/^[0-9]+$/', $_GET['ctg_id']) === 1) ? $_GET['ctg_id'] : '';
+
 // カテゴリーリスト(一覧)を取得する
 $cateArr = $itm->getCategoryList();
-//商品リストを取得する
-$dataArr = $itm->getItemList($ctg_id);
 
+// 検索ワードのPOSTがあれば、商品の取得データを処理をする
+if($_POST['item_search'] !== false){
+  $res = $itm->searchItem($ctg_id , $_POST['search_word']);
+  if($res !== false){
+    $dataArr = $res;
+    // $count = strval(count($res));
+
+  }else{
+    // 検索ワードがヒットしなかった場合
+    $errArr = '検索結果は0件です';
+    $dataArr = '';
+  }
+}else{
+  $dataArr = $itm->getItemList($ctg_id);
+}
 
 $context = [];
 $context['cateArr'] = $cateArr;
 $context['dataArr'] = $dataArr;
+// $context['count'] = $count;
 $context['errArr'] = $errArr;
 $context['session'] = $_SESSION;
 $context['post'] = $_POST;
 
-$template = $twig->loadTemplate('item_list.html.twig');
+$template = $twig->loadTemplate('top.html.twig');
 $template->display($context);

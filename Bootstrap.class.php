@@ -13,11 +13,20 @@ date_default_timezone_set('Asia/Tokyo');
 require_once dirname(__FILE__) . './../vendor/autoload.php';
 
 class Bootstrap{
-  const DB_HOST = 'localhost';
-  const DB_NAME = 'portfolio_1';
-  const DB_USER = 'portfolio_1';
-  const DB_PASS = 'portfolio_1';
+  // MAMP環境
+  // const DB_HOST = 'localhost';
+  // const DB_NAME = 'portfolio_1';
+  // const DB_USER = 'portfolio_1';
+  // const DB_PASS = 'portfolio_1';
+  // const DB_TYPE = 'mysql';
+
+  // heroku環境
+  const DB_HOST = 'zus-cdbr-east-02.cleardb.com';
+  const DB_NAME = 'heroku_d58340816acde8e?reconnect=true';
+  const DB_USER = 'b05820f52b8ee9';
+  const DB_PASS = 'c1b7829a';
   const DB_TYPE = 'mysql';
+
 
   const APP_DIR = '/Applications/mamp/htdocs/DT/';
   const TEMPLATE_DIR = self::APP_DIR . 'templates/portfolio_1/';
