@@ -1,6 +1,7 @@
 {
    "require":{
       "twig/twig":"~1.0",
-      "panique/php-sass": "^1.0"
+      "panique/php-sass": "^1.0",
+      "heroku/heroku-buildpack-php": "*"
    }
 }
