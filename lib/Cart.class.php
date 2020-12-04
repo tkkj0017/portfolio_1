@@ -116,9 +116,4 @@ class Cart{
     $arrWhereVal = [$crt_id];
     return $this->db->update($table, $dataArr, $where, $arrWhereVal);
   }
-
-  // お気に入り(いいねする)  itemクラスの方??
-
-
-
 }

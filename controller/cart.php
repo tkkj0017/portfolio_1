@@ -31,19 +31,25 @@ $twig = new \Twig_Environment($loader, [
   'cache' => Bootstrap::CACHE_DIR
 ]);
 
-// セッションに、セッションIDを設定する
-// $ses->checkSession();
-// $logses->checkSession(); 
-
+// 各変数の取得
 $mem_id = $_SESSION['mem_id'];
 
-// カートIDの宣言
-
-
-// 変数の取得
 $crt_id = (isset($_GET['crt_id']) === true && preg_match('/^\d+$/', $_GET['crt_id']) === 1) ? $_GET['crt_id'] : '';
 $item_id = (!empty($_POST['item_id']) === true) ? $_POST['item_id'] : '';
 $num = (!empty($_POST['num']) === true) ? $_POST['num'] : '';
+$errArr = '';
+
+// // 二重リロード対策
+// // POSTされたトークンを取得
+// $token = isset($_POST["token"]) ? $_POST["token"] : "";
+// // セッション変数のトークンを取得
+// $session_token = isset($_SESSION["token"]) ? $_SESSION["token"] : "";
+// // セッション変数のトークンを削除
+// unset($_SESSION["token"]);
+// // POSTされたトークンとセッション変数のトークンを比較
+// if(($token == "" && $token != $session_token)){
+//   $errArr = 'ERROR: 不正な更新処理です。';
+// }
 
 // item_idが設定されていれば、ショッピングカートに登録する
 if($item_id !== '' && $num !== ''){
@@ -56,13 +62,14 @@ if($item_id !== '' && $num !== ''){
   }
 }
 
+// カート情報を取得する
+$dataArr = $cart->getCartData($mem_id);
+
 // crt_idが設定されていれば、削除する
 if(isset($_GET['crt_id']) && empty($_GET['num'])){
   $res = $cart->delCartData($crt_id);
 }
 
-// カート情報を取得する
-$dataArr = $cart->getCartData($mem_id);
 
 // アイテム数と合計金額を取得する。listは配列をそれぞれの変数に分ける
 // $cartSumAndNumData = $cart->getItemAndSumPrice($mem_id);
@@ -81,19 +88,23 @@ if(isset($_POST['numUpdate'])){
   $dataArr = $cart->getCartData($mem_id);
 }
 
-// いいね数取得
-foreach($dataArr as $key)
+// for($i = 0; $i < count($dataArr)-1 ; $i++){
+//   // 各商品のいいね数を取得
+//   $item_id = $dataArr[$i]['item_id'];
+//   $dataArr['likeCnt'] = $like->countLike($item_id);
+//   // 各商品をいいねしているか判別
+// }
 
 // アイテム毎の数量と合計金額を取得する
 $cart->getItemNumPrice();
 
-var_dump($dataArr);
+
 $context = [];
 $context['sumNum'] = $sumNum;
 $context['sumPrice'] = $sumPrice;
 $context['dataArr'] = $dataArr;
+$context['errArr'] = $errArr;
 $context['session'] = $_SESSION;
-$context['likeCnt'] = $likeCnt;
 
 $template = $twig->loadTemplate('cart.html.twig');
 $template->display($context);

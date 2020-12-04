@@ -31,8 +31,9 @@ $twig = new \Twig_Environment($loader, [
   'cache' => Bootstrap::CACHE_DIR
 ]);
 
-//セッションに、セッションIDを設定する
-// $ses->checkSession();
+// // カート追加の二重送信防止対策
+// $token = uniqid('', true);;
+// $_SESSION['token'] = $token;
 
 //item_idを取得する //三項演算子
 $item_id = (isset($_GET['item_id']) === true && preg_match('/^\d+$/', $_GET['item_id']) === 1) ? $_GET['item_id'] : '';
@@ -53,7 +54,7 @@ $likeCnt = $like->countLike($item_id);
 
 // ログイン中の場合は、自分がそのアイテムをいいねしているかを判別する
 if(!empty($_SESSION)) {
-    $myLike = $like->getLike($item_id, $_SESSION['mem_id']);
+    $myLike = $like->selectLike($item_id, $_SESSION['mem_id']);
 }
 
 $context = [];
@@ -64,6 +65,7 @@ $context['num'] = $num;
 // var_dump($itemData);
 $context['session'] = $_SESSION;
 $context['likeCnt'] = $likeCnt;
+// $context['token'] = $token;
 
 $template = $twig->loadTemplate('item_detail.html.twig');
 $template->display($context);

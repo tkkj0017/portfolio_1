@@ -27,6 +27,7 @@ $twig = new \Twig_Environment($loader, [
   'cache' => Bootstrap::CACHE_DIR
 ]);
 
+
 // SessionKeyを見て、DBへの登録状態をチェックする
 // customer_idに自分の情報を入れてあげる
 // $loginses->checkSession();

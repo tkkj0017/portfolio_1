@@ -16,7 +16,7 @@ class Like{
     $this->db = $db;
   }
 
-  public function getLike($item_id, $mem_id){
+  public function selectLike($item_id, $mem_id){
     $table = ' likes ';
     $col = ' * ';
     $where = ' item_id = ? AND mem_id = ? ';

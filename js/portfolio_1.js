@@ -7,6 +7,11 @@ $(function(){
   //   location.href = entry_url + "controller/member_detail.php?mem_id" + mem_id;
   // });
 
+  // submitボタンの二重送信禁止
+  // $('#double').on('click', function () {
+  //   $(this).css('pointer-events','none');
+  // });
+
   /* 郵便番号検索がクリックされた時 */
   $("#address_search").click(function(){
     var zip1 = $('#zip1').val();
