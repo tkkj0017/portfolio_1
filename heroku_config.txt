@@ -1,0 +1,5 @@
+=== still-sierra-50567 Config Vars
+BUILDPACK_URL:        https://github.com/heroku/heroku-buildpack-php
+CLEARDB_DATABASE_URL: mysql://b05820f52b8ee9:c1b7829a@us-cdbr-east-02.cleardb.com/heroku_d58340816acde8e?reconnect=true
+DOCUMENT_ROOT:        /Applications/MAMP/htdocs/DT/portfolio_1
+DOC_ROOT:             htdocs
