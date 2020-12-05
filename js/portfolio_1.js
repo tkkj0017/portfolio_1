@@ -26,8 +26,7 @@ $(function(){
   //         _header.removeClass('fixed');   
   //     }
   // });
-  
-  _window.trigger('scroll');
+
 
   /* 郵便番号検索がクリックされた時 */
   $("#address_search").click(function(){

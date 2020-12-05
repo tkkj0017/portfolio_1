@@ -156,9 +156,9 @@ create table contact(
 create table orders(
   order_id int unsigned not null auto_increment,
   order_key varchar(255) not null,
-  item_id int unsigned not null,
   iten_cnt int not null,
-  total_price DECIMAL(10,3) unsigned not null, 
+  total_num int not null,
+  total_price int(10) unsigned not null, 
   mem_id int unsigned not null,
   regist_date datetime not null,
   update_date datetime,

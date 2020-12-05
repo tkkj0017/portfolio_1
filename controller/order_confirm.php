@@ -27,7 +27,7 @@ $logses = new LoginSession($db);
 $cart = new Cart($db);
 
 // 購入確認画面の表示
-if($_POST['order_confirm'] === true){
+if(isset($_POST['order_confirm']) === true){
   $mode = 'order_confirm'; 
 }
 
@@ -37,14 +37,17 @@ if(isset($_POST['back']) === true){
 }
 
 // 購入を完了する
-if($_POST['order_complete'] === true){
+if(isset($_POST['order_complete']) === true){
   $mode = 'order_complete';
 }
 
 switch($mode){
   case 'order_confirm':  // 購入確認画面の表示
     $dataArr = $_POST;
-    unset($_dataArr['order_confirm']);
+    var_dump($dataArr) . "¥n";
+    var_dump($_POST) . "¥n";
+    unset($dataArr['order_confirm']);
+    $template = 'order_confirm.html.twig';
     
 
     break;
@@ -60,6 +63,7 @@ switch($mode){
     
     break;
 }
+
 
 $context['dataArr'] = $dataArr;
 $context['session'] = $_SESSION;

@@ -18,12 +18,14 @@ use portfolio_1\lib\PDODatabase;
 use portfolio_1\lib\LoginSession;
 use portfolio_1\lib\Cart;
 use portfolio_1\lib\Like;
+use portfolio_1\lib\Item;
 
 $db = new PDODatabase(Bootstrap::DB_HOST, Bootstrap::DB_USER, Bootstrap::DB_PASS, Bootstrap::DB_NAME, Bootstrap::DB_TYPE);
 // $ses = new Session($db);
 $logses = new LoginSession($db);
 $cart = new Cart($db);
 $like = new Like($db);
+$item = new Item($db);
 
 // テンプレート指定
 $loader = new \Twig_Loader_Filesystem(Bootstrap::TEMPLATE_DIR);
@@ -50,34 +52,20 @@ $errArr = '';
 // if(($token == "" && $token != $session_token)){
 //   $errArr = 'ERROR: 不正な更新処理です。';
 // }
+// アイテム単品の価格を取得
 
 // item_idが設定されていれば、ショッピングカートに登録する
 if($item_id !== '' && $num !== ''){
-  $res = $cart->insCartData($mem_id, $item_id, $num);
-  var_dump($res);
+  $price = $item->getItemPrice($item_id);
+  // 小計を出すために数量と価格を数値化
+  $num = intval($num);
+  $price = intval($price[0]['price']);
+  $res = $cart->insCartData($mem_id, $item_id, $num, $price);
   //登録に失敗した場合、エラーページを表示する
   if($res ===false){
     echo "商品購入に失敗しました。";
     exit();
   }
-}
-
-// カート情報を取得する
-$dataArr = $cart->getCartData($mem_id);
-
-// crt_idが設定されていれば、削除する
-if(isset($_GET['crt_id']) && empty($_GET['num'])){
-  $res = $cart->delCartData($crt_id);
-}
-
-
-// アイテム数と合計金額を取得する。listは配列をそれぞれの変数に分ける
-// $cartSumAndNumData = $cart->getItemAndSumPrice($mem_id);
-list($sumNum, $sumPrice) = $cart->getSumPriceNum($mem_id);
-
-// カートの中身が無い時に0と表示できるようにする
-if($sumNum === null){
-  $sumNum = '0';
 }
 
 // 数量が変更された時にAjax通信を用いて、データベースを書き換える
@@ -88,6 +76,11 @@ if(isset($_POST['numUpdate'])){
   $dataArr = $cart->getCartData($mem_id);
 }
 
+// crt_idが設定されていれば、削除する
+if($crt_id !== ''){
+  $res = $cart->delCartData($crt_id);
+}
+
 // for($i = 0; $i < count($dataArr)-1 ; $i++){
 //   // 各商品のいいね数を取得
 //   $item_id = $dataArr[$i]['item_id'];
@@ -95,15 +88,26 @@ if(isset($_POST['numUpdate'])){
 //   // 各商品をいいねしているか判別
 // }
 
+// カート情報を取得する
+$dataArr = $cart->getCartData($mem_id);
+
+// アイテム数と合計金額を取得する。listは配列をそれぞれの変数に分ける
+// $cartSumAndNumData = $cart->getItemAndSumPrice($mem_id);
+
+list($sumNum, $sumPrice) = $cart->getSumPriceNum($mem_id);
 // アイテム毎の数量と合計金額を取得する
 $cart->getItemNumPrice();
 
+// カートの中身が無い時に0と表示できるようにする
+if($sumNum === null){
+  $sumNum = '0';
+}
 
 $context = [];
 $context['sumNum'] = $sumNum;
 $context['sumPrice'] = $sumPrice;
 $context['dataArr'] = $dataArr;
-$context['errArr'] = $errArr;
+// $context['errArr'] = $errArr;
 $context['session'] = $_SESSION;
 
 $template = $twig->loadTemplate('cart.html.twig');

@@ -18,12 +18,14 @@ class Cart{
 
   //カートに登録する(誰が($customer_no)、何を($item_id)、何個(num)、いつ(regist_date))
 
-  public function insCartData($mem_id, $item_id, $num){
+  public function insCartData($mem_id, $item_id, $num, $price){
+    $sub_total_price = $num * $price;
     $table = ' cart ';
     $insData = [
       'mem_id' => $mem_id,
       'item_id' => $item_id, 
       'num' => $num,
+      'sub_total_price' => $sub_total_price,
       'regist_date' => date("Y-m-d H:i:s")
     ];
     return $this->db->insert($table, $insData);
@@ -50,7 +52,7 @@ class Cart{
     // WHERE
     // c.customer_no = ? AND c.delete_flg = ? ';
     $table = ' cart c LEFT JOIN item i ON c.item_id = i.item_id ';
-    $column = ' c.crt_id, c.num, i.item_id, i.item_name, i.price, i.image';
+    $column = ' c.crt_id, c.num, c.sub_total_price, i.item_id, i.item_name, i.price, i.image';
     // $where = ' c.mem_id = ? AND c.delete_flg = ? GROUP BY i.item_id';
     $where = ' c.mem_id = ? AND c.delete_flg = ? ';
     $arrVal = [$mem_id, 0];
@@ -84,7 +86,7 @@ class Cart{
     
     // 合計金額取得
     $table = " cart c LEFT JOIN item i ON c.item_id = i.item_id ";
-    $column = " SUM(i.price) * c.num AS totalPrice ";
+    $column = " SUM(c.sub_total_price)  AS totalPrice ";
     $where = ' c.mem_id = ? AND c.delete_flg = ?';
     $arrWhereVal = [$mem_id, 0];
 

@@ -55,4 +55,15 @@ class Item{
     $res = $this->db->select($table, $col, $where, $arrVal);
     return ($res !== false && count($res) !== 0) ? $res : false;
   }
+
+  // 商品の価格のみ取得する(カート用)
+  public function getItemPrice($item_id){
+    $table = ' item ';
+    $col = ' price ';
+    $where = ($item_id !== '') ? ' item_id = ? ' : '';
+    // カテゴリーによって表示させるアイテムを変える
+    $arrVal = ($item_id !== '') ? [$item_id] : [];
+    $res = $this->db->select($table, $col, $where, $arrVal);
+    return ($res !== false && count($res) !== 0) ? $res : false;
+  }
 }
