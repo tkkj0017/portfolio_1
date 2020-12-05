@@ -1,1 +1,1 @@
-web: vendor/bin/heroku-php-apache2 /Applications/MAMP/htdocs/DT/portfolio_1
+web: vendor/bin/heroku-php-apache2 /Applications/MAMP/htdocs/DT/
