@@ -10,7 +10,7 @@ namespace portfolio_1;
 // ブラウザでの時刻を固定
 date_default_timezone_set('Asia/Tokyo');
 
-require_once dirname(__FILE__) . './../vendor/autoload.php';
+require_once dirname(__FILE__) . 'vendor/autoload.php';
 
 class Bootstrap{
   // MAMP環境
