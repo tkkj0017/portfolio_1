@@ -86,7 +86,7 @@ class Cart{
     
     // 合計金額取得
     $table = " cart c LEFT JOIN item i ON c.item_id = i.item_id ";
-    $column = " SUM(c.sub_total_price)  AS totalPrice ";
+    $column = " SUM(c.sub_total_price) AS totalPrice ";
     $where = ' c.mem_id = ? AND c.delete_flg = ?';
     $arrWhereVal = [$mem_id, 0];
 
