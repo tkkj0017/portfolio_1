@@ -58,7 +58,7 @@ if(!empty($_SESSION)) {
 }
 
 $context = [];
-$num = '';
+$num = '1';
 $context['cateArr'] = $cateArr;
 $context['itemData'] = $itemData[0];
 $context['num'] = $num;

@@ -59,19 +59,19 @@ div#nav ul{
 
 div#nav li{
   float: left;
-  width: 200px;
+  width: 160px;
   border-right: #fff 1px solid;
 }
 
 div#nav li:first-child{
-  width: 160px;
+  width: 150px;
   border-right: #fff 1px solid;
 }
 
 div#nav a{
   display: block;
   padding: 15px 0;
-  font-size: 30px;
+  font-size: 25px;
   text-align: center;
   letter-spacing: 1px;
   text-decoration: none;
