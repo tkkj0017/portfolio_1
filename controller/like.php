@@ -22,7 +22,7 @@ if(isset($_POST['itemId']) === true){
   $item_id = $_POST['itemId'];
   $mem_id = $_SESSION['mem_id'];
   
-  $res = $like->getLike($item_id, $mem_id);
+  $res = $like->selectLike($item_id, $mem_id);
 
   if($res !== false){
     $res = $like->deleteLike($item_id, $mem_id);

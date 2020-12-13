@@ -83,9 +83,10 @@ switch($mode){
     // var_dump($k);
     // 使用する文字列を配列に格納
     $order_key = '';
-    $string_length = 15;
+    $max_length = 15;
     $characters = array_merge(range('a', 'z'), range('A', 'Z'), range('0', '9'));
-    for ($i=0; $i<$string_length; $i++) {
+
+    for ($i=0; $i<$max_length; $i++) {
       $order_key .= $characters[mt_rand(0, count($characters)-1)];
     }
 

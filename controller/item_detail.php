@@ -44,7 +44,7 @@ if($item_id === ''){
 }
 
 //カテゴリーリスト(一覧)を取得する
-$cateArr = $itm->getCategoryList();
+$cateArr = $itm->getCategoryList('item');
 
 //商品情報を取得する
 $itemData = $itm->getItemDetailData($item_id);
