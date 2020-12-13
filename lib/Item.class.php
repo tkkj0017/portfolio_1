@@ -18,10 +18,12 @@ class Item{
   }
 
   // カテゴリーリストの取得
-  public function getCategoryList(){
+  public function getCategoryList($cate_genre){
     $table = ' category ';
-    $col = ' ctg_id, category_name ';
-    $res = $this->db->select($table, $col);
+    $col = ' ctg_id, category_name, cate_genre';
+    $where = ($cate_genre !== '') ? ' cate_genre = ? ' : '';
+    $arrVal = ($cate_genre !== '') ? [$cate_genre] : [];
+    $res = $this->db->select($table, $col, $where, $arrVal);
     return ($res !== false && count($res) !== 0) ? $res : false;
   }
 

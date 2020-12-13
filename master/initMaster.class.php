@@ -37,7 +37,7 @@ class initMaster{
   }
 
   public static function getGenre(){
-    $genreArr = ['HIP-HOP', 'JAZZ', 'POP', 'HOUSE', 'LOCK', 'BREAK', 'BALLET'];
+    $genreArr = ['HIPHOP', 'JAZZ HIPHOP','JAZZ', 'POP', 'HOUSE', 'LOCK', 'BREAK', 'BALLET'];
     return $genreArr;
   }
 

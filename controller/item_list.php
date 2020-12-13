@@ -38,7 +38,7 @@ $ctg_id = (isset($_GET['ctg_id']) === true && preg_match('/^[0-9]+$/', $_GET['ct
 $errArr = [];
 
 // カテゴリーリスト(一覧)を取得する
-$cateArr = $itm->getCategoryList();
+$cateArr = $itm->getCategoryList('item');
 //商品リストを取得する
 $dataArr = $itm->getItemList($ctg_id);
 

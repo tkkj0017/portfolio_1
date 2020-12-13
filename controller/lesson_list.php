@@ -40,7 +40,7 @@ $twig = new \Twig_Environment($loader, [
 $ctg_id = (isset($_GET['ctg_id']) === true && preg_match('/^[0-9]+$/', $_GET['ctg_id']) === 1) ? $_GET['ctg_id'] : '';
 
 // カテゴリーリスト(一覧)を取得する
-$cateArr = $itm->getCategoryList();
+$cateArr = $itm->getCategoryList('lesson');
 //商品リストを取得する
 $dataArr = $itm->getItemList($ctg_id);
 $context = [];

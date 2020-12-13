@@ -41,12 +41,14 @@ create table cart(
 create table category(
   ctg_id tinyint unsigned not null auto_increment,
   category_name varchar(100) not null,
+  cate_genre varchar(100) not null,
   regist_date datetime not null,
   update_date datetime,
   delete_date datetime,
   delete_flg tinyint(1) unsigned not null default 0,
   primary key(ctg_id)
 );
+
 
 //顧客の認識(セッション)
 create table session(
@@ -171,9 +173,26 @@ create table saless(
 
 以下、INSERT--------------------------------------
 
-INSERT INTO category(ctg_id, category_name, regist_date, delete_flg) VALUES ( 1, '野菜', NOW(), '');
-INSERT INTO category(ctg_id, category_name, regist_date, delete_flg) VALUES ( 2, '果物', NOW(), '');
-INSERT INTO category(ctg_id, category_name, regist_date, delete_flg) VALUES ( 3, '飲料', NOW(), '');
+INSERT INTO category(ctg_id, category_name, cate_genre, regist_date, delete_flg) VALUES (1, 'HIPHOP', 'lesson', NOW(), '');
+INSERT INTO category(ctg_id, category_name, cate_genre, regist_date, delete_flg) VALUES (2, 'JAZZ HIPHOP', 'lesson', NOW(), '');
+INSERT INTO category(ctg_id, category_name, cate_genre, regist_date, delete_flg) VALUES (3, 'JAZZ', 'lesson', NOW(), '');
+INSERT INTO category(ctg_id, category_name, cate_genre, regist_date, delete_flg) VALUES (4, 'POP', 'lesson', NOW());
+INSERT INTO category(ctg_id, category_name, cate_genre, regist_date, delete_flg) VALUES (5, 'HOUSE', 'lesson', NOW(), '');
+INSERT INTO category(ctg_id, category_name, cate_genre, regist_date, delete_flg) VALUES (6, 'LOCK', 'lesson', NOW(), '');
+INSERT INTO category(ctg_id, category_name, cate_genre, regist_date, delete_flg) VALUES (7, 'BREAK', 'lesson', NOW(), '');
+INSERT INTO category(ctg_id, category_name, cate_genre, regist_date, delete_flg) VALUES (8, 'BALLET', 'lesson', NOW(), '');
+
+INSERT INTO category(ctg_id, category_name, cate_genre, regist_date, delete_flg) VALUES (9, 'シャツ', 'item', NOW(), '');
+INSERT INTO category(ctg_id, category_name, cate_genre, regist_date, delete_flg) VALUES (10, 'パンツ', 'item', NOW(), '');
+INSERT INTO category(ctg_id, category_name, cate_genre, regist_date, delete_flg) VALUES (10, 'パーカー', 'item', NOW(), '');
+INSERT INTO category(ctg_id, category_name, cate_genre, regist_date, delete_flg) VALUES (11, 'キャップ', 'item', NOW(), '');
+INSERT INTO category(ctg_id, category_name, cate_genre, regist_date, delete_flg) VALUES (12, 'タオル', 'item', NOW(), '');
+INSERT INTO category(ctg_id, category_name, cate_genre, regist_date, delete_flg) VALUES (13, 'iPhoneケース', 'item', NOW(), '');
+INSERT INTO category(ctg_id, category_name, cate_genre, regist_date, delete_flg) VALUES (14, 'バッグ', 'item', NOW(), '');
+
+
+
+
 
 INSERT INTO item(item_id, item_name, detail, price, image, stock_num, ctg_id, regist_date, delete_flg) VALUES ( 1,  'たまねぎ', '染色体数は2n=16。生育適温は20℃前後で、寒さには強く氷点下でも凍害はほとんど見られないが、25℃以上の高温では生育障害が起こる。', 100, 'tamanegi.jpg',100,  1 , NOW(), '');
 INSERT INTO item(item_id, item_name, detail, price, image, stock_num, ctg_id, regist_date, delete_flg) VALUES ( 2,  'にんじん', '細長い東洋系品種と、太く短い西洋系品種の2種類に大別され、ともに古くから薬や食用としての栽培が行われてきた。', 150, 'ninjin.jpg',100, 1 , NOW(), '');
