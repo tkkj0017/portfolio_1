@@ -1,8 +1,0 @@
-<div id="category">
-  <ul>
-    <li><a href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/top.php">全て</a></li>
-    {% for value in cateArr %}
-      <li><a href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/top.php?ctg_id={{value.ctg_id}}">{{value.category_name}}</a></li>
-    {% endfor %}
-  </ul>
-</div>

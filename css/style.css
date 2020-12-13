@@ -19,13 +19,13 @@ li{
 }
 
 header{
-  height:500px;
+  height:200px;
   margin: 0px;
   padding: 0px;
   min-width:100%;
   margin-bottom: 0;
   background-image: url('../img/top-wrapper.jpg');
-  background-position: top left 330px ;
+  background-position: top left 300px ;
   background-size: cover;
   color: white;
 }
