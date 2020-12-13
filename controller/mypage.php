@@ -32,7 +32,7 @@ if(isset($_SESSION['mem_id'])===true && $_SESSION['mem_id']!==''){
   $data = $member->getMemberDetail($mem_id);
   
   $dataArr = ($data !== "" && $data !== []) ? $data[0] : '';
-  $dataArr['traffic'] = explode('_', $dataArr['traffic']);
+  $dataArr['genre'] = explode('_', $dataArr['genre']);
   $context = [];
   $context['dataArr'] = $dataArr;
   $context['session'] = $_SESSION;

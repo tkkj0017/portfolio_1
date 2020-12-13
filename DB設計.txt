@@ -66,7 +66,7 @@ create table member (
   family_name_kana varchar(20) not null,
   first_name_kana varchar(20) not null,
   email varchar(255) not null,
-  user_id varchar(255) not null,
+  user_name varchar(255) not null,
   password varchar(255) not null,
   sex tinyint(1) unsigned not null,
   year varchar(4) not null,
@@ -78,8 +78,8 @@ create table member (
   tel1 varchar(6) not null,
   tel2 varchar(6) not null,
   tel3 varchar(6) not null,
-  contents text not null,
-  traffic varchar(20) not null,
+  genre varchar(20) not null,
+  comments text not null,
   regist_date datetime not null,
   update_date datetime,
   delete_date datetime,
@@ -169,14 +169,11 @@ create table saless(
   primary key(order_id)
 );
 
-
 以下、INSERT--------------------------------------
 
 INSERT INTO category(ctg_id, category_name, regist_date, delete_flg) VALUES ( 1, '野菜', NOW(), '');
 INSERT INTO category(ctg_id, category_name, regist_date, delete_flg) VALUES ( 2, '果物', NOW(), '');
 INSERT INTO category(ctg_id, category_name, regist_date, delete_flg) VALUES ( 3, '飲料', NOW(), '');
-
-
 
 INSERT INTO item(item_id, item_name, detail, price, image, stock_num, ctg_id, regist_date, delete_flg) VALUES ( 1,  'たまねぎ', '染色体数は2n=16。生育適温は20℃前後で、寒さには強く氷点下でも凍害はほとんど見られないが、25℃以上の高温では生育障害が起こる。', 100, 'tamanegi.jpg',100,  1 , NOW(), '');
 INSERT INTO item(item_id, item_name, detail, price, image, stock_num, ctg_id, regist_date, delete_flg) VALUES ( 2,  'にんじん', '細長い東洋系品種と、太く短い西洋系品種の2種類に大別され、ともに古くから薬や食用としての栽培が行われてきた。', 150, 'ninjin.jpg',100, 1 , NOW(), '');

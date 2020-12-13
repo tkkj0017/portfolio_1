@@ -65,8 +65,8 @@ switch($mode){
     if(isset($_POST['sex']) === false){
       $dataArr['sex'] = "";    
     }
-    if(isset($_POST['traffic']) === false){
-      $dataArr['traffic'] = []; 
+    if(isset($_POST['genre']) === false){
+      $dataArr['genre'] = []; 
     }
     $errArr = $common->registErrorCheck($dataArr);
     $err_check = $common->getErrorFlg();
@@ -79,8 +79,8 @@ switch($mode){
     if(isset($_POST['sex']) === false){
       $dataArr['sex'] = "";    
     }
-    if(isset($_POST['traffic']) === false){
-      $dataArr['traffic'] = []; 
+    if(isset($_POST['genre']) === false){
+      $dataArr['genre'] = []; 
     }
     $errArr = $common->editErrorCheck($dataArr);
     $err_check = $common->getErrorFlg();
@@ -132,10 +132,10 @@ switch($mode){
 }
 
 $sexArr = initMaster::getSex();
-$trafficArr = initMaster::getTrafficWay();
+$genreArr = initMaster::getGenre();
 
 $context['sexArr'] = $sexArr;
-$context['trafficArr'] = $trafficArr;
+$context['genreArr'] = $genreArr;
 list($yearArr, $monthArr, $dayArr) = initMaster::getDate();
 $context['yearArr'] = $yearArr;
 $context['monthArr'] = $monthArr;

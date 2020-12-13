@@ -32,14 +32,14 @@ if(isset($_GET['mem_id'])===true && $_GET['mem_id']!==''){
 
   $dataArr = ($data !== "" && $data !== []) ? $data[0] : '';
  
-  $dataArr['traffic'] = explode('_', $dataArr['traffic']);
+  $dataArr['genre'] = explode('_', $dataArr['genre']);
   $dataArr['password'] = '';
 
   $sexArr = initMaster::getSex();
-  $trafficArr = initMaster::getTrafficWay();
+  $genreArr = initMaster::getGenre();
 
   $context['sexArr'] = $sexArr;
-  $context['trafficArr'] = $trafficArr;
+  $context['genreArr'] = $genreArr;
   list($yearArr, $monthArr, $dayArr) = initMaster::getDate();
   $context['yearArr'] = $yearArr;
   $context['monthArr'] = $monthArr;

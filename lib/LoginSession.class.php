@@ -24,25 +24,25 @@ class LoginSession{
     $this->db = $db; //インスタンス化されたDBを使える
   }
 
-  public function checkSession($mem_id='', $user_id= ''){
+  public function checkSession($mem_id='', $user_name= ''){
     //セッションIDのチェック
     // $this->selectSession($mem_id);
     //セッションIDがある(過去にショッピングカートに来た事がある)
     if($this->selectSession($mem_id) !== false){
       $_SESSION['login_flg'] = '1';
       $_SESSION['mem_id'] = $mem_id;
-      $_SESSION['user_id'] = $user_id;
+      $_SESSION['user_name'] = $user_name;
     }else{
       //セッションIDが無い場合(初めてこのサイトに来ている)
-      $res = $this->insertSession($mem_id, $user_id);
+      $res = $this->insertSession($mem_id, $user_name);
       if($res === true){
         $_SESSION['login_flg'] = '1';
         $_SESSION['mem_id'] = $mem_id;
-        $_SESSION['user_id'] = $user_id;
+        $_SESSION['user_name'] = $user_name;
       }else{
         $_SESSION['login_flg'] = '';
         $_SESSION['mem_id'] = '';
-        $_SESSION['user_id'] = '';
+        $_SESSION['user_name'] = '';
       }
     }
   }
@@ -60,7 +60,7 @@ class LoginSession{
     $table = ' loginsession ';
     $insData = [];
     $insData['mem_id'] = $mem_id;
-    $insData['user_id'] = $user_id;
+    $insData['user_name'] = $user_name;
     $insData['session_key'] = $this->session_key;
     // 現在時刻の取得
     $insData['regist_date'] = date("Y-m-d H:i:s");

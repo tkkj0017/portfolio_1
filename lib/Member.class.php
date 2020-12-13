@@ -22,8 +22,8 @@ class Member{
     $table = ' member ';
     // パスワードのハッシュ化
     $dataArr['password'] = password_hash($dataArr['password'], PASSWORD_DEFAULT);
-    // 交通手段の配列の解除
-    $dataArr['traffic'] = implode('_', $dataArr['traffic']);
+    // 得意ジャンルの配列の解除
+    $dataArr['genre'] = implode('_', $dataArr['genre']);
     // 登録時刻の取得
     $dataArr['regist_date'] = date("Y-m-d H:i:s");
     $dataArr['delete_flg'] = '';
@@ -36,8 +36,8 @@ class Member{
     $table = ' member ';
     // パスワードのハッシュ化
     $dataArr['password'] = password_hash($dataArr['password'], PASSWORD_DEFAULT);
-    // 交通手段の配列の解除
-    $dataArr['traffic'] = implode('_', $dataArr['traffic']);
+    // 得意ジャンルの配列の解除
+    $dataArr['genre'] = implode('_', $dataArr['genre']);
     $dataArr['update_date'] = date("Y-m-d H:i:s");
     $dataArr['delete_flg'] = '';
     $where = 'mem_id = ?';

@@ -36,9 +36,9 @@ class initMaster{
     return $sexArr;
   }
 
-  public static function getTrafficWay(){
-    $trafficArr = ['徒歩', '自転車', 'バス', '電車', '車・バイク'];
-    return $trafficArr;
+  public static function getGenre(){
+    $genreArr = ['HIP-HOP', 'JAZZ', 'POP', 'HOUSE', 'LOCK', 'BREAK', 'BALLET'];
+    return $genreArr;
   }
 
   public static function getItemNum(){

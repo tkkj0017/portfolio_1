@@ -48,7 +48,7 @@ if(isset($_POST['login']) === true){
     if($res && password_verify($dataArr['password'], $res[0]['password']) && $res[0]['delete_flg'] === '0'){ 
       $dataArr = $res[0];
       // $ses->checkSession();
-      $logses->checkSession($dataArr['mem_id'], $dataArr['user_id']);
+      $logses->checkSession($dataArr['mem_id'], $dataArr['user_name']);
       header('Location:' . Bootstrap::ENTRY_URL . '/controller/top.php?mem_id=' . $dataArr['mem_id']);
       exit();
      }else{

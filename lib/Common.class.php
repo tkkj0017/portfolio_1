@@ -25,14 +25,14 @@ class Common{
     $this->familyNameCheck();
     $this->firstNameCheck();
     $this->mailCheck('regist');
-    $this->userIdCheck();
+    $this->userNameCheck();
     $this->passwordCheck('regist');
     $this->sexCheck();
     $this->birthCheck();
     $this->zipCheck();
     $this->addCheck();
     $this->telCheck();
-    $this->trafficCheck();
+    $this->genreCheck();
     return $this->errArr;
   }
 
@@ -51,14 +51,14 @@ class Common{
     $this->familyNameCheck();
     $this->firstNameCheck();
     $this->mailCheck('edit');
-    $this->userIdCheck();
+    $this->userNameCheck();
     $this->passwordCheck('edit');
     $this->sexCheck();
     $this->birthCheck();
     $this->zipCheck();
     $this->addCheck();
     $this->telCheck();
-    $this->trafficCheck();
+    $this->genreCheck();
     return $this->errArr;
   }
 
@@ -128,9 +128,9 @@ class Common{
     }
   }
 
-  private function userIdCheck(){
-    if($this->dataArr['user_id'] === ''){
-      $this->errArr['user_id'] = 'ユーザー名を入力してください';
+  private function userNameCheck(){
+    if($this->dataArr['user_name'] === ''){
+      $this->errArr['user_name'] = 'ユーザー名を入力してください';
     }
   }
 
@@ -197,9 +197,9 @@ class Common{
     }
   }
  
-  private function trafficCheck(){
-    if($this->dataArr['traffic'] === []){
-      $this->errArr['traffic'] = '最低1つの交通機関を入力してください。';
+  private function genreCheck(){
+    if($this->dataArr['genre'] === []){
+      $this->errArr['genre'] = '最低1つの得意ジャンルを入力してください。';
     }
   }
 

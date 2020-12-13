@@ -39,8 +39,8 @@ $dataArr = [
   'tel1' => '',
   'tel2' => '',
   'tel3' => '',
-  'traffic' => '',
-  'contents' => ''
+  'genre' => '',
+  'comments' => ''
 ];
 
 // エラ〜メッセージの定義
@@ -53,13 +53,13 @@ foreach($dataArr as $key => $value){
 list($yearArr, $monthArr, $dayArr) = initMaster::getDate();
 
 $sexArr = initMaster::getSex();
-$trafficArr = initmaster::getTrafficway();
+$genreArr = initmaster::getGenre();
 $context = [];
 $context['yearArr'] = $yearArr;
 $context['monthArr'] = $monthArr;
 $context['dayArr'] = $dayArr;
 $context['sexArr'] = $sexArr;
-$context['trafficArr'] = $trafficArr;
+$context['genreArr'] = $genreArr;
 $context['dataArr'] = $dataArr;
 $context['errArr'] = $errArr;
 

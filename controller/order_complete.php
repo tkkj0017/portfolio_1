@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*
 *ファイルパス /Applications/MAMP/htdocs/DT/portfolio_1/controller/order_complete.php
