@@ -62,6 +62,17 @@ class Common{
     return $this->errArr;
   }
 
+  public function contactErrorCheck($dataArr){
+    $this->dataArr = $dataArr;
+    if($this->dataArr['subject'] === ''){
+      $this->errArr['subject'] = '件名を入力してください';
+    }
+    if($this->dataArr['body'] === ''){
+      $this->errArr['body'] = '本文を入力してください';
+    }
+    return $this->errArr;
+  }
+
   private function createErrorMessage(){
     foreach($this->dataArr as $key => $val){
       $this->errArr[$key] = '';
@@ -70,7 +81,7 @@ class Common{
 
   private function familyNameCheck(){
     if($this->dataArr['family_name'] === ''){
-      $this->errArr['family_name'] = 'お名前(氏)を入力してください';
+      $this->errArr['family_name'] = 'お名前(氏)を力入してください';
     }
   }
 

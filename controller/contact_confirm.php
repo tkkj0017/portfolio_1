@@ -14,6 +14,7 @@ use portfolio_1\lib\Member;
 use portfolio_1\lib\Contact;
 use portfolio_1\lib\LoginSession;
 use portfolio_1\lib\PDODatabase;
+use portfolio_1\lib\Common;
 
 // テンプレート指定
 $loader = new \Twig_Loader_Filesystem
@@ -26,6 +27,7 @@ $db = new PDODatabase(Bootstrap::DB_HOST, Bootstrap::DB_USER, Bootstrap::DB_PASS
 $member = new Member($db);
 $contact = new Contact($db);
 $logses = new LoginSession($db);
+$common = new Common($db);
 
 if(isset($_POST['contact']) === true){
   $mode = 'contact';
@@ -43,8 +45,9 @@ switch($mode){
   case 'contact':
     unset($_POST['contact']);
     $dataArr = $_POST;
-    $err_check = '';
-    $template = ($err_check === '') ? 'contact_confirm.html.twig' : 'contact_form.html.twig';
+    $errArr = $common->contactErrorCheck($dataArr);
+    $err_check = $common->getErrorFlg();
+    $template = ($err_check === true) ? 'contact_confirm.html.twig' : 'contact_form.html.twig';
     break;
   
   case 'back':
@@ -102,10 +105,9 @@ switch($mode){
     break;
 }
 
-$errArr = [];
-
 $context['dataArr'] = $dataArr;
 $context['errArr'] = $errArr;
+var_dump($errArr);
 $context['session'] = $_SESSION;
 
 $template = $twig->loadTemplate($template);
