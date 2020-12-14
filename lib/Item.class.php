@@ -68,4 +68,26 @@ class Item{
     $res = $this->db->select($table, $col, $where, $arrVal);
     return ($res !== false && count($res) !== 0) ? $res : false;
   }
+
+  // 購入されたアイテムの在庫を数量分だけ減らす
+  public function reduceStockNum($item_id, $num){
+    $table = ' item ';
+    // 在庫数の取得
+    $col = ' stock_num ';
+    $where = ($item_id !== '') ? ' item_id = ? ' : '';
+    // カテゴリーによって表示させるアイテムを変える
+    $arrVal = ($item_id !== '') ? [$item_id] : [];
+    $res = $this->db->select($table, $col, $where, $arrVal);
+    var_dump($res);
+    if ($res !== false) {
+        // 在庫の数を減らす処理
+        // 在庫数の型を数値に変える
+        $stock_num = (int)$res[0]['stock_num'];
+        $dataArr = ['stock_num' => $stock_num - $num];
+        $where = ($item_id !== '') ? ' item_id = ? ' : '';
+        $arrWhereVal = [$item_id];
+        $res = $this->db->update($table, $dataArr, $where, $arrWhereVal);
+        return ($res !== false && count($res) !== 0) ? $res : false;
+    }
+  }
 }

@@ -101,14 +101,15 @@ switch($mode){
       $dataArr[$i]['sub_total_price'] = $cartArr[$i]['sub_total_price'];
       $dataArr[$i]['mem_id'] = $_SESSION['mem_id'];
       $dataArr[$i]['email'] = $mem[0]['email'];
-      $insres = $order->insertOrders($dataArr[$i]);
-      if($insres !== true){
+      $insRes = $order->insertOrders($dataArr[$i]);
+      if($insRes !== true){
         break;
       }else{
-        $delres = $cart->delCartData($cartArr[$i]['crt_id']);
+        $delRes = $cart->delCartData($cartArr[$i]['crt_id']);
+        $reduceStockRes = $item->reduceStockNum($cartArr[$i]['item_id'], $cartArr[$i]['num']);
       }
     }
-    if($insres === true && $delres === true){
+    if($insRes === true && $delRes === true && $reduceStockRes){
       header('Location:' . Bootstrap::ENTRY_URL .'controller/order_complete.php?mem_id=' . $_SESSION['mem_id']);
       exit();
     }else{
