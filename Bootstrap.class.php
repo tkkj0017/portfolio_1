@@ -14,27 +14,27 @@ require_once dirname(__FILE__) .'./../vendor/autoload.php';
 
 class Bootstrap{
   // MAMP環境
-  const DB_HOST = 'localhost';
+  // const DB_HOST = 'localhost';
+  // const DB_NAME = 'portfolio_1';
+  // const DB_USER = 'portfolio_1';
+  // const DB_PASS = 'portfolio_1';
+  // const DB_TYPE = 'mysql';
+
+  // AWS環境
+  const DB_HOST = 'aws-and-infra-web.cf8okgpduk6t.ap-northeast-1.rds.amazonaws.com';
   const DB_NAME = 'portfolio_1';
   const DB_USER = 'portfolio_1';
   const DB_PASS = 'portfolio_1';
   const DB_TYPE = 'mysql';
 
-  // AWS環境
-  // const DB_HOST = 'aws-and-infra-web.cf8okgpduk6t.ap-northeast-1.rds.amazonaws.com';
-  // const DB_NAME = 'portfolio_1';
-  // const DB_USER = 'portfolio_1';
-  // const DB_PASS = 'portfolio_1';
-  // // const DB_TYPE = 'mysql';
 
-
-  const APP_DIR = '/Applications/mamp/htdocs/DT/';
-  // const APP_DIR = '/var/www/html/';
+  // const APP_DIR = '/Applications/mamp/htdocs/DT/';
+  const APP_DIR = '/var/www/html/';
   const TEMPLATE_DIR = self::APP_DIR . 'templates/portfolio_1/';
-  // const CACHE_DIR = false;
-  const CACHE_DIR = self::APP_DIR . 'templates_c/portfolio_1/';
-  const APP_URL = 'http://localhost/DT/';
-  // const APP_URL = 'http://tk-dance-plfm-1.com/portfolio_1/controller/top.php';
+  const CACHE_DIR = false;
+  // const CACHE_DIR = self::APP_DIR . 'templates_c/portfolio_1/';
+  // const APP_URL = 'http://localhost/DT/';
+  const APP_URL = 'http://tk-dance-plfm-1.com/portfolio_1/controller/top.php';
   const ENTRY_URL = self::APP_URL . 'portfolio_1/';
   public static function loadClass($class){
     $path = str_replace('\\', '/', self::APP_DIR . $class . '.class.php');
