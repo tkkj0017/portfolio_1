@@ -13,6 +13,7 @@ namespace portfolio_1;
 require_once dirname(__FILE__) . './../Bootstrap.class.php';
 
 use portfolio_1\Bootstrap;
+use portfolio_1\master\initMaster;
 use portfolio_1\lib\PDODatabase;
 // use portfolio_1\lib\Session;
 use portfolio_1\lib\LoginSession;
@@ -57,11 +58,12 @@ if(!empty($_SESSION)) {
     $myLike = $like->selectLike($item_id, $_SESSION['mem_id']);
 }
 
+$numArr = initMaster::getItemNum();
+
 $context = [];
-$num = '1';
 $context['cateArr'] = $cateArr;
 $context['itemData'] = $itemData[0];
-$context['num'] = $num;
+$context['numArr'] = $numArr;
 // var_dump($itemData);
 $context['session'] = $_SESSION;
 $context['likeCnt'] = $likeCnt;

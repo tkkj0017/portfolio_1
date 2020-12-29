@@ -42,10 +42,11 @@ class initMaster{
   }
 
   public static function getItemNum(){
-    for($i = 1; $i < 101; $i++){
-      $num = sprintf("%d", $i);
-      return $num;
+    $numArr = [];
+    for($i = 1; $i < 51; $i++){
+      $num = sprintf("%3d", $i);
+      $numArr[$num] = $num;
     }
-  } 
-
+    return $numArr;
+  }
 }

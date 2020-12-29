@@ -84,28 +84,31 @@ $(function(){
         alert("読み込みに失敗しました。")
       },
     );
-  });
-
-  //   /* カートのアイテムの数量を変更する時 */
-  $('#num').bind('input', function(){
-    var crt_id = $("#crt_id").val();
-    var $this = $(this);
-
-    $.ajax({
-      type : "post",
-      url : entry_url + 'controller/cart.php?crt_id=' + escape(crt_id) + '?num=' + $this,
-      data : {numUpdate : num, crt_id : crt_id}
-    }).then(
-      function(data){
-        console.log(data);
-        $this.html(data);
-      },
-      function(){
-        alert("読み込みに失敗しました。");
-      },
-    );
-  });
+  });  
 });
+
+
+// //   /* カートのアイテムの数量を変更する時 */
+// $('#num-change').click(function(){
+//   var crt_id = $("#crt_id").val();
+//   var num = $('#num').val();
+//   var entry_url = $('#entry_url').val();
+//   $.ajax({
+//     type : "post",
+//     url : entry_url + "controller/cart.php",
+//     data : {num : num, crt_id : crt_id}
+//   }).then(
+//     function(data){
+//       alert('ok');
+//       console.log(data);
+//       $(".num").val(data);
+//       $(".sub_total_price").val(data);
+//     },
+//     function(){
+//       alert("読み込みに失敗しました。");
+//     },
+//   );
+// });
 
 // $(function(){
 //   var entry_url = $("#entry_url").val();
@@ -182,22 +185,5 @@ $(function(){
 //   });
   
 //   /* カートのアイテムの数量を変更する時 */
-  $('#num').bind('input', function(){
-    var crt_id = $("#crt_id").val();
-    var $this = $(this);
 
-    $.ajax({
-      type : "post",
-      url : entry_url + 'controller/cart.php?crt_id=' + escape(crt_id) + '?num=' + $this,
-      data : {numUpdate : num, crt_id : crt_id}
-    }).then(
-      function(data){
-        console.log(data);
-        $this.html(data);
-      },
-      function(){
-        alert("読み込みに失敗しました。");
-      },
-    );
-  });
 // });

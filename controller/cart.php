@@ -13,6 +13,7 @@ namespace portfolio_1;
 require_once dirname(__FILE__) . './../Bootstrap.class.php';
 
 use portfolio_1\Bootstrap;
+use portfolio_1\master\initMaster;
 use portfolio_1\lib\PDODatabase;
 // use portfolio_1\lib\Session;
 use portfolio_1\lib\LoginSession;
@@ -69,11 +70,15 @@ if($item_id !== '' && $num !== ''){
 }
 
 // 数量が変更された時にAjax通信を用いて、データベースを書き換える
-if(isset($_POST['numUpdate'])){
-  $num = $_POST['numUpdate'];
-  $crt_id = $_POST['num'];
-  $cart->numUpdate($crt_id,$num);
-  $dataArr = $cart->getCartData($mem_id);
+if(isset($_POST['num']) === true && isset($_POST['crt_id']) === true){
+  $num = $_POST['num'];
+  $crt_id = $_POST['crt_id'];
+  $cartData = $cart->getCartData($mem_id);
+  $price = $cartData[$crt_id]['c.unit_price'];
+  $res = $cart->numUpdate($crt_id,$num,$price);
+  if ($res !== false) {
+    echo $cart->getCartData($mem_id);
+  }
 }
 
 // crt_idが設定されていれば、削除する
@@ -103,10 +108,13 @@ if($sumNum === null){
   $sumNum = '0';
 }
 
+var_dump($_POST);
+$numArr = initMaster::getItemNum();
 $context = [];
 $context['sumNum'] = $sumNum;
 $context['sumPrice'] = $sumPrice;
 $context['dataArr'] = $dataArr;
+$context['numArr'] = $numArr;
 // $context['errArr'] = $errArr;
 $context['session'] = $_SESSION;
 

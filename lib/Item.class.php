@@ -72,7 +72,7 @@ class Item{
   // 購入されたアイテムの在庫を数量分だけ減らす
   public function reduceStockNum($item_id, $num){
     $table = ' item ';
-    // 在庫数の取得
+    // 指定の商品の在庫数の取得
     $col = ' stock_num ';
     $where = ($item_id !== '') ? ' item_id = ? ' : '';
     // カテゴリーによって表示させるアイテムを変える

@@ -33,7 +33,7 @@ $errArr = [];
 $ctg_id = (isset($_GET['ctg_id']) === true && preg_match('/^[0-9]+$/', $_GET['ctg_id']) === 1) ? $_GET['ctg_id'] : '';
 
 // カテゴリーリスト(一覧)を取得する
-$cateArr = $itm->getCategoryList();
+$cateArr = $itm->getCategoryList('item');
 
 // 検索ワードのPOSTがあれば、商品の取得データを処理をする
 if($_POST['item_search'] !== false){
@@ -59,5 +59,5 @@ $context['errArr'] = $errArr;
 $context['session'] = $_SESSION;
 $context['post'] = $_POST;
 
-$template = $twig->loadTemplate('top.html.twig');
+$template = $twig->loadTemplate('item_list.html.twig');
 $template->display($context);
