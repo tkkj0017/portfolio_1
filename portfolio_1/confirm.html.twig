@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}js/portfolio_1.js"></script>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP|Open+Sans&display=swap" rel="stylesheet">
+    <link href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+    <title>会員登録確認</title>
+  </head>
+  <body>
+    <div id="nav">
+      {% include 'navbar.html.twig' %}
+    </div>
+    <form method="post" action="confirm.php">
+      <table>
+      <tr>
+        <th>お名前(氏名)</th>
+        <td>{{dataArr.family_name}} {{dataArr.first_name}}</td>
+      </tr>
+      <tr>
+        <th>お名前(かな)</th>
+        <td>{{dataArr.family_name_kana}} {{dataArr.first_name_kana}}</td>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <td>{{dataArr.email}}</td>
+      </tr>
+      <tr>
+        <th>ユーザー名</th>
+        <td>{{dataArr.user_name}}</td>
+      </tr>
+      <tr>
+        <th>パスワード</th>
+        <td>{{dataArr.password}}</td>
+      </tr>
+      <tr>
+        <th>性別</th>
+        <td>{% if dataArr.sex == '1' %}男性{% elseif dataArr.sex == '2' %}女性{% endif %}</td>
+      </tr>
+      <tr>
+        <th>生年月日</th>
+        <td>{{dataArr.year}}年 {{dataArr.month}}月 {{dataArr.day}}日</td>
+      </tr>
+      <tr>
+        <th>郵便番号</th>
+        <td>{{dataArr.zip1}} - {{dataArr.zip2}}</td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <td>{{dataArr.address}}</td>
+      </tr>
+      <tr>
+        <th>電話番号</th>
+        <td>{{dataArr.tel1}} - {{dataArr.tel2}} - {{dataArr.tel3}}</td>
+      </tr>
+      <tr>
+        <th>得意ジャンル</th>
+        <td>
+        {% for index in dataArr.genre %}
+          {{genreArr[index]}}<br>
+        {% endfor %}
+        </td>
+      </tr>
+      <tr>
+        <th>コメント</th>
+        <td>{{dataArr.comments|nl2br}}</td>
+      </tr>
+      </table>
+      <div>
+        <input type="submit" name="back" value="戻る">
+        {% if session.mem_id %}
+          <input type="submit" name="update" value="更新完了">
+        {% else %}
+          <input type="submit" name="complete" value="登録完了">
+        {% endif %}
+
+        {% for key,value in dataArr %}
+          {% if value is iterable %}
+            {% for v in value %}
+              <input type="hidden" name="{{key}}[]" value="{{v}}">
+            {% endfor %}
+          {% else %}
+            <input type="hidden" name="{{key}}" value="{{value}}">
+          {% endif %}
+        {% endfor %}
+     </div>
+    </form>
+  </body>
+</html>

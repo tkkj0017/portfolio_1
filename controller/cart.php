@@ -70,8 +70,8 @@ if($item_id !== '' && $num !== ''){
 }
 
 // 数量が変更された時にAjax通信を用いて、データベースを書き換える
-if(isset($_POST['num']) === true && isset($_POST['crt_id']) === true){
-  $num = $_POST['num'];
+if(isset($_POST['num-chenge']) === true){
+  $num = $_POST['num-change'];
   $crt_id = $_POST['crt_id'];
   $cartData = $cart->getCartData($mem_id);
   $price = $cartData[$crt_id]['c.unit_price'];
@@ -108,7 +108,6 @@ if($sumNum === null){
   $sumNum = '0';
 }
 
-var_dump($_POST);
 $numArr = initMaster::getItemNum();
 $context = [];
 $context['sumNum'] = $sumNum;

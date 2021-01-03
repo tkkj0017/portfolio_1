@@ -76,7 +76,7 @@ $(function(){
           $this.children('i').toggleClass('far'); //空洞ハート
           // いいね押した時のスタイル
           $this.children('i').toggleClass('fas'); //塗りつぶしハート
-          $this.children('i').toggleClass('active');
+          $this.children('i').toggleClass('fg-lg');
           $this.toggleClass('active');
         }
       },

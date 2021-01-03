@@ -66,12 +66,10 @@ div#nav ul{
 div#nav li{
   float: left;
   width: 160px;
-  border-right: #fff 1px solid;
 }
 
 div#nav li:first-child{
   width: 150px;
-  border-right: #fff 1px solid;
 }
 
 div#nav a{

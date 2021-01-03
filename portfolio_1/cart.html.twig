@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}js/portfolio_1.js"></script>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP|Open+Sans&display=swap" rel="stylesheet">
+    <link href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+    <title>商品カート</title>
+  </head>
+  <body>
+    <div id="nav">
+      {% include 'navbar.html.twig' %}
+    </div>
+    <input type="hidden" name="entry_url" id="entry_url" value="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}">
+    <div id="wrapper">
+      <div id="cart_list">
+        <h3>ショッピングカート</h3>
+        <p><a href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/lesson_list.php">レッスン一覧へ</a></p>
+        <p><a href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/item_list.php">商品一覧へ</a></p>
+          <p>{{session.user_id}}さんのカート内商品数 : {{sumNum}}点 合計金額: &yen;{{sumPrice}}</p>
+          {% if dataArr | length == 0 %}
+            <p>カートに商品は入っていません</p>
+          {% else %}
+          {# {% if errArr | length > 0 %}
+            <p><span class="red">{{errArr}}</span></p>
+          {% endif %} #}
+            <form method="post" action="order_confirm.php?mem_id={{session.mem_id}}">
+            <div class="item">
+              {% for value in dataArr %} 
+                <ul>
+                  <input type="hidden" name="crt_id" value="{{value.crt_id}}" id="crt_id">
+                  <li class="image"><img src="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}img/{{value.image}}" alt="{{value.item_name}}"></li>
+                  <li class="name">{{value.item_name}}</li>
+                  <li class="num">&yen;{{value.price}} × 
+                  {# <input type="number" min="1" max="100" value="{{value.num}}" id="num"> #}
+                  <select name='num' id="num">
+                  {% for index, label in numArr %}
+                    <option value="{{index}}" {% if value.num == index %} selected {% endif %}>{{label}}</option>
+                  {% endfor %}
+                  </select>
+                  点</li>
+                  <input type="submit" name="num-change">
+                    数量を変更する
+                  </input>
+                  {# アイテムの金額 × 数量の積を格納する変数productPriceを使用 #}
+                  {# <div id="like">
+                    <i class="fas fa-heart fa-lg"></i><span>{{value.likeCnt}}</span>
+                  </div> #}
+
+                  <li class="sub_total_price" id="sub_total_price">&yen;{{value.sub_total_price}}</li>
+
+                  <li><a href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/cart.php?crt_id={{value.crt_id}}">削除</a></li>
+                </ul>
+              {% endfor %}
+            </div>
+            <div>
+              <input type="submit" name="order_confirm" value="購入確認画面に進む">
+            </div>
+            </form>
+          {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

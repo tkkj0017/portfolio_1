@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}js/portfolio_1.js"></script>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP|Open+Sans&display=swap" rel="stylesheet">
+    <link href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
+    <title>会員情報の編集</title>
+  </head>
+  <body>
+    <div id="nav">
+      {% include 'navbar.html.twig' %}
+    </div>
+    <input type="hidden" name="entry_url" id="entry_url" value="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}">
+    <form method="post" action="confirm.php?mem_id={{dataArr.mem_id}}">
+    <table>
+    <tr>
+      <th>お名前(氏名)<span class="red">*</span></th>
+      <td>
+      <input type="text" name="family_name" value="{{dataArr.family_name}}">
+      <input type="text" name="first_name" value="{{dataArr.first_name}}">
+      {% if errArr.family_name | length > 0 %}<br><span class="red">{{errArr.family_name}}</span>{% endif %}
+      {% if errArr.first_name | length > 0 %}<br><span class="red">{{errArr.first_name}}</span>{% endif %}
+      </td>
+    </tr>
+    <tr>
+      <th>お名前(かな)</th>
+      <td>
+      <input type="text" name="family_name_kana" value="{{dataArr.family_name_kana}}">
+      <input type="text" name="first_name_kana" value="{{dataArr.first_name_kana}}">
+      </td>  
+    </tr>
+    <tr>
+      <th>メールアドレス<span class="red">*</span></th>
+      <td>
+      <input type="text" name="email" value="{{dataArr.email}}"  size="40">
+      {% if errArr.email | length > 0 %}<br><span class="red">{{errArr.email}}</span>{% endif %}
+      </td>
+    </tr>
+    <tr>
+      <th>ユーザー名<span class="red">*</span></th>
+      <td>
+      <input type="text" name="user_name" value="{{dataArr.user_name}}"  size="40">
+      {% if errArr.user_name | length > 0 %}<br><span class="red">{{errArr.user_name}}</span>{% endif %}
+      </td>
+    </tr>
+    <tr>
+      <th>パスワード<span class="red">*</span></th>
+      <td>
+      <input type="text" name="password" value="{{dataArr.password}}"  size="40">
+      {% if errArr.password | length > 0 %}<br><span class="red">{{errArr.password}}</span>{% endif %}
+      </td>
+    </tr>
+    <tr>
+      <th>性別<span class="red">*</span></th>
+      <td>
+      {% for index, label in sexArr %}
+        <input type="radio" name="sex" value="{{index}}" id="sex_{{index}}"     {% if dataArr.sex == index %} checked="checked" {% endif %}>
+        <label for="sex_{{index}}">{{label}}</label>
+      {% endfor %}
+      {% if errArr.sex | length > 0 %}<br><span class="red">{{errArr.sex}}</span>{% endif %}  
+      </td>  
+    </tr>
+    <tr>
+      <th>生年月日<span class="red">*</span></th>
+      <td>
+      <select name="year">
+        {% for index, label in yearArr %}
+          <option value="{{index}}" {% if dataArr.year == index %} selected {% endif %}>{{label}}</option>
+        {% endfor %}
+      </select>
+      <select name='month'>
+        {% for index, label in monthArr %}
+          <option value="{{index}}" {% if dataArr.month == index %} selected {% endif %}>{{label}}</option>
+        {% endfor %}
+      </select>
+      <select name='day'>
+        {% for index, label in dayArr %}
+          <option value="{{index}}" {% if dataArr.day == index %} selected {% endif %}>{{label}}</option>
+        {% endfor %}
+      </select>
+      {% if errArr.year | length > 0 %}<br><span class="red">{{errArr.year}}</span>{% endif %}  
+      {% if errArr.month | length > 0 %}<br><span class="red">{{errArr.month}}</span>{% endif %}  
+      {% if errArr.day | length > 0 %}<br><span class="red">{{errArr.day}}</span>{% endif %}  
+      </td>  
+    </tr>
+    <tr>
+      <th>郵便番号<span class="red">*</span></th>
+      <td>
+      <input type="text" name="zip1" value="{{dataArr.zip1}}" id="zip1" size="3" maxlength="3"> -
+      <input type="text" name="zip2" value="{{dataArr.zip2}}" id="zip2" size="4" maxlength="4">  
+      <input type="button" name="address_search" value="〒から住所を入力" id="address_search">
+      {% if errArr.zip1 | length > 0 %}<br><span class="red">{{errArr.zip1}}</span>{% endif %}  
+      {% if errArr.zip2 | length > 0 %}<br><span class="red">{{errArr.zip2}}</span>{% endif %}  
+      </td>  
+    </tr>
+    <tr>
+      <th>住所<span class="red">*</span></th>
+      <td>
+      <input type="text" name="address" value="{{dataArr.address}}" id="address" size="40">
+      {% if errArr.address | length > 0 %}<br><span class="red">{{errArr.address}}</span>{% endif %}
+      </td>
+    </tr>  
+    <tr>
+      <th>電話番号<span class="red">*</span></th>
+      <td>
+      <input type="text" name="tel1" value="{{dataArr.tel1}}"  size="6" maxlength="6"> -
+      <input type="text" name="tel2" value="{{dataArr.tel2}}"  size="6" maxlength="6"> -
+      <input type="text" name="tel3" value="{{dataArr.tel3}}"  size="6" maxlength="6">
+      {% if errArr.tel1 | length > 0 %}<br><span class="red">{{errArr.tel1}}</span>{% endif %}
+      {% if errArr.tel2 | length > 0 %}<br><span class="red">{{errArr.tel2}}</span>{% endif %}
+      {% if errArr.tel3 | length > 0 %}<br><span class="red">{{errArr.tel3}}</span>{% endif %}
+      </td>
+    </tr>
+    <tr>
+      <th>得意ジャンル<span class="red">*</span></th>
+      <td>
+      {% for index, label in genreArr %}
+        <input type="checkbox" name="genre[]" value="{{index}}" id="genre_{{index}}"     {% if index in dataArr.genre %} checked="checked" {% endif %}>
+      <label for="genre_{{index}}">{{label}}</label>
+      {% endfor %}
+      {% if errArr.genre | length > 0 %}<br><span class="red">{{errArr.genre}}</span>{% endif %}  
+      </td>  
+    </tr>                    
+    <tr>
+    <th>コメント</th>
+    <td><textarea name="comments" rows="4" cols="40">{{dataArr.comments}}</textarea>
+    </td>
+    </tr>         
+    </table>
+    <div>
+      <input type="submit" name="back" value="マイページに戻る" formaction="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/mypage.php?mem_id={{session.mem_id}}">
+      <input type="submit" name="edit" value="確認" formaction="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/confirm.php?mem_id={{session.mem_id}}">
+    </div>
+    </form>
+  </body>
+</html>
