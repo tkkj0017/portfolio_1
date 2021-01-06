@@ -63,7 +63,7 @@ switch($mode){
     $dataArr = $_POST;
     unset($dataArr['complete']);
     $dataArr['mem_id'] = $_SESSION['mem_id'];
-    $dataArr['user_id'] = $_SESSION['user_id'];
+    $dataArr['user_id'] = $_SESSION['user_name'];
     $res = $member->getMemberDetail($_SESSION['mem_id']);
     $dataArr['email'] = $res[0]['email'];
     $res = $contact->insertContact($dataArr);
@@ -82,7 +82,7 @@ switch($mode){
 
       // 投稿メールをサイト管理者のアドレスに送信
       $to = 'tttvvvaken@gmail.com';
-      $subject = $_SESSION['user_id'] . '様からのお問い合わせです';
+      $subject = $_SESSION['user_name'] . '様からのお問い合わせです';
       $body = 'お問い合わせ内容は以下です。'. $dataArr['subject'] . $dataArr['body'];
       $res2 = mb_send_mail($to, $subject, $body);
 
@@ -107,7 +107,6 @@ switch($mode){
 
 $context['dataArr'] = $dataArr;
 $context['errArr'] = $errArr;
-var_dump($errArr);
 $context['session'] = $_SESSION;
 
 $template = $twig->loadTemplate($template);

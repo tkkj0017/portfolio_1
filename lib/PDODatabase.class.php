@@ -101,7 +101,7 @@ class PDODatabase{
   }
   
   
-  public function setOrder($order = ''){
+  public function setOrder($strOrder = ''){
     if($strOrder !== ''){
       $this->order = ' ORDER BY ' . $strOrder;
     }
@@ -127,6 +127,7 @@ class PDODatabase{
   private function getSql($type, $table, $where = '', $column = ''){
     switch($type){
       case 'select':
+        
         $columnKey = ($column !== '') ? $column : "*";
       break;
       case 'count':

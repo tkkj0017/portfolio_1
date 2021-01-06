@@ -13,6 +13,9 @@ li{
   padding: 0 5px 0 5px;
 }
 
+.font-small {
+  font-size: 0.6rem;
+}
 
 /* body{
   text-align: center;
@@ -93,7 +96,7 @@ div#nav a:hover{
   background-image: url('../img/top-wrapper.jpg');
   background-size: cover;
   color: white;
-  border:1px solid green;
+  /* border:1px solid green; */
 }
 
 #wrapper{
@@ -103,14 +106,14 @@ div#nav a:hover{
   position: relative;
   display: flex;
   float: left;
-  border:1px solid green;
+  /* border:1px solid green; */
 }
 
 div#wrapper div.category{
   float: left;
   width: 120px;
   text-align: left;
-  border:1px solid green;
+  /* border:1px solid green; */
 }
 
 div#wrapper div.category ul{
@@ -123,11 +126,9 @@ div#wrapper div#item_detail
   width: 330px;
   text-align: left;
   float: left;
-  border:1px solid green;
-
 }
 
-div.item {
+div.item{
   width: 1200px;
 	margin-left:auto;
 	margin-right:auto;
@@ -139,13 +140,13 @@ div.item {
 div#wrapper div#item_list div.item ul{
   overflow: hidden;
   height: auto;
-  border:1px solid green;
+  /* border:1px solid green; */
 }
 
 div#wrapper div#item_list div.item .name{
   font-weight: bold;
-  border:1px solid green;
-
+  /* border:1px solid green; */
+  
 }
 div#wrapper div#item_list div.item .price{
   color : #900;
@@ -154,21 +155,70 @@ div#wrapper div#item_list div.item ul li.detail{
   text-align: left;
   font-weight: bold;
   vertical-align: bottom;
-  border:1px solid green;
+  /* border:1px solid green; */
 }
 div#wrapper div#item_list div.item .image{
   padding: 0.4px;
   text-align: left;
-  border:1px solid green;
+  /* border:1px solid green; */
 }
+
+/* レッスンリスト */
+div#wrapper div#lesson_list
+{
+  width: 330px;
+  text-align: left;
+  float: left;
+}
+
+div.item{
+  width: 1200px;
+	margin-left:auto;
+	margin-right:auto;
+	padding-bottom:60px;
+	padding-top:60px;
+  display: flex;
+}
+
+div#wrapper div#lesson_list div.lesson ul{
+  overflow: hidden;
+  height: auto;
+  /* border:1px solid green; */
+}
+
+div#wrapper div#lesson_list div.lesson .name{
+  font-weight: bold;
+  /* border:1px solid green; */
+  
+}
+div#wrapper div#lesson_list div.lesson .price{
+  color : #900;
+}
+div#wrapper div#lessonlist div.lesson ul li.detail{
+  text-align: left;
+  font-weight: bold;
+  vertical-align: bottom;
+  /* border:1px solid green; */
+}
+div#wrapper div#lesson_list div.lesson .image{
+  padding: 0.4px;
+  text-align: left;
+}
+
+/* レッスンリストここまで */
+
 div#wrapper div#cart_list div.item{
   text-align: right;
   overflow: hidden;
   height: auto;
-  border:1px solid green;
+  /* border:1px solid green; */
 }
 div#wrapper div#cart_list div.item .image{
   float: left;
+}
+
+#mypage{
+  padding: 50px;
 }
 
 /* div#footer {
