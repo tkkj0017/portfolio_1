@@ -20,7 +20,7 @@
   </head>
   <body>
     <div id="nav">
-      {% include "navbar.html.twig' %}
+      {% include "navbar.html.twig" %}
     </div>
     <input type="hidden" name="entry_url" value="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}" id="entry_url">
     <div id="wrapper">
@@ -44,13 +44,13 @@
             </dl>
           </div>
           <div class="cart_in">
-            <input type="button" name="back" value="商品一覧へ戻る" onclick="history.back(); return false;">
+            <input type="button" name="back" class="btn btn-outline-dark btn-sm" value="商品一覧へ戻る" onclick="history.back(); return false;">
             {# ログイン時のみ表示 #}
             {% if session.login_flg == '1' %}
               {# 二重送信防止対策 #}
               {# <input type="hidden" name="token" value="{{token}}"> #}
               {# カートに入れる #}
-              <input type="submit" name="cart_in" value="カートへ入れる">
+              <input type="submit" class="btn btn-outline-dark btn-sm" name="cart_in" value="カートへ入れる">
               {# お気に入り登録をする #}
               <div id="like">
                 <i class="fas fa-heart fa-lg"></i><span>{{likeCnt}}</span>
@@ -61,3 +61,4 @@
       </div>
     </div>
   </body> 
+</html>

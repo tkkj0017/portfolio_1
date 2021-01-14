@@ -20,11 +20,11 @@
     <div id="nav">
       {% include 'navbar.html.twig' %}
     </div>
-    <div id="wrapper">
+    <div id="wrapper" style="margin-top: 50px;">
       <div class="category_menu">
         {% include 'category.html.twig' %}
       </div>
-      <div id="item_list">
+      <div id="lesson_list">
         {# レッスン検索 #}
         <div id="lesson_search">
           <form method="post" action="lesson_search.php">
@@ -35,7 +35,7 @@
           {% endif %}
         </div>
         {% for value in dataArr %}
-          <div class="item">
+          {# <div class="lesson">
             <ul>
               <li class="image"><a href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/item_detail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}img/{{value.image}}" alt="{{value.item_name}}"></a></li>
               <li class="name"><a href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/item_detail.php?item_id={{value.item_id}}">{{value.item_name}}</a></li>
@@ -43,7 +43,7 @@
               
               <li class="detail"><a href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/item_detail.php?item_id={{value.item_id}}">詳細</a></li>
             </ul>
-          </div>
+          </div> #}
         {% endfor %}
       </div>
     </div>

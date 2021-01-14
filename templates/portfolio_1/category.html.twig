@@ -1,9 +1,9 @@
 <div id="category">
-  <ul>
-    {% set index = 0 %}
-    <li><a href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/{{cateArr[0].cate_genre}}_list.php">全て</a></li>
-    {% for value in cateArr %}
-      <li><a href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/{{value.cate_genre}}_list.php?ctg_id={{value.ctg_id}}">{{value.category_name}}</a></li>
-    {% endfor %}
-  </ul>
+    <ul>
+      {% set index = 0 %}
+      <li><a href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/{{cateArr[0].cate_genre}}_list.php">全て</a></li>
+      {% for value in cateArr %}
+        <li><a href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/{{value.cate_genre}}_list.php?ctg_id={{value.ctg_id}}">{{value.category_name}}</a></li>
+      {% endfor %}
+    </ul>
 </div>

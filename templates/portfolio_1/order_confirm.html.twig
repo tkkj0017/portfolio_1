@@ -19,7 +19,7 @@
     <div id="nav">
       {% include 'navbar.html.twig' %}
     </div>
-    <div id="wrapper">
+    <div id="wrapper" style="margin-top: 50px;">
       <div id="cart_list">
         <h3>* 購入確認画面 *</h3>
         <h4>内容を確認し、よろしければ"購入"ボタンを押してください</h4>
@@ -34,7 +34,7 @@
               <div class="item">
                 <ul>
                   <input type="hidden" name="crt_id" value="{{value.crt_id}}">
-                  <li class="image"><img src="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}img/{{value.image}}" alt="{{value.item_name}}"></li>
+                  <li class="image"><img src="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}img/{{value.image}}" alt="{{value.item_name}}" class="img-fluid rounded"></li>
                   <li class="name">{{value.item_name}}</li>
                   <li class="num">&yen;{{value.price}} × {{value.num}}点</li>
                   <li class="sub_total_price" id="sub_total_price">&yen;{{value.sub_total_price}}</li>
@@ -43,8 +43,8 @@
             {% endfor %}
                 <p>購入商品数量 : {{sumNum}}点</p><h4>合計金額: &yen;{{sumPrice}}</h4>
                 <div>
-                  <input type="submit" name="back" value="カートへ戻る" formaction="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/cart.php?mem_id={{session.mem_id}}">
-                  <input type="submit" name="order_complete" value="購入する">
+                  <input type="submit" class="btn btn-outline-dark btn-sm" name="back" value="カートへ戻る" formaction="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/cart.php?mem_id={{session.mem_id}}">
+                  <input type="submit" class="btn btn-outline-dark btn-sm" name="order_complete" value="購入する">
                 </div>
             </form>
           {% endif %}

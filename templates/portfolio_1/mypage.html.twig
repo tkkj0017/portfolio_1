@@ -21,9 +21,9 @@
       {% include 'navbar.html.twig' %}
     </div>
     <input type="hidden" name="entry_url" value="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}" id="entry_url">
-    <form method="post" action="member_edit.php">
-      <div id="mypage">
-        <div class="mypage">
+    <div class="container">
+      <form method="post" action="member_edit.php">
+        <div id="mypage">
           <table>
           <tr>
             <th>お名前(氏名)</th>
@@ -88,12 +88,12 @@
           </table>
           <input type="hidden" name="mem_id" id="mem_id" value="{{dataArr.mem_id}}">
         </div>
-      </div>
-      <div>
-        <input type="submit" name="edit" value="編集する" formaction="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/member_edit.php?mem_id={{dataArr.mem_id}}">
-        <input type="submit" name="logout" value="ログアウトする" formaction="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/logout.php">
-        <input type="submit" name="resign_confirm" value="退会する" formaction="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/resign.php?mem_id={{dataArr.mem_id}}">
-      </div>
-    </form>
+        <div>
+          <input type="submit" name="edit" class="btn btn-outline-dark btn-sm"  value="編集する" formaction="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/member_edit.php?mem_id={{dataArr.mem_id}}">
+          <input type="submit" name="logout" class="btn btn-outline-dark btn-sm" value="ログアウトする" formaction="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/logout.php">
+          <input type="submit" name="resign_confirm" class="btn btn-outline-dark btn-sm" value="退会する" formaction="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/resign.php?mem_id={{dataArr.mem_id}}">
+        </div>
+      </form>
+    <div>
   </body>
 </html>

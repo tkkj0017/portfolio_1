@@ -32,8 +32,8 @@
       </tr>
       </table>
       <div>
-        <input type="submit" name="back" value="戻る">
-        <input type="submit" name="complete" value="送信する">
+        <input type="submit" name="back" class="btn btn-outline-dark btn-sm" style="color: white;" value="戻る">
+        <input type="submit" name="complete" class="btn btn-outline-dark btn-sm" style="color: white;" value="送信する">
         {% for key,value in dataArr %}
           {% if value is iterable %}
             {% for v in value %}

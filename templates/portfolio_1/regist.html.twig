@@ -20,6 +20,15 @@
     <div id="nav">
       {% include 'navbar.html.twig' %}
     </div>
+    <div class="jumbotron" style="margin: 0 auto; background: url('../img/top-wrapper.jpg') center no-repeat; background-size: cover; margin-bottom: 100px;">
+      <div class="container">
+        <h1 style="font-family: 'Kaushan Script', cursive; color:white; text-align: center;" class="title">Welcome to TK Dance Platform!</h1>
+        <div class="container" style="text-align: center;">>
+          <a class="btn btn-dark btn-sm" href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/login_form.php">ログイン</a>
+          <a class="btn btn-dark btn-sm" href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/regist.php">無料新規登録</a>
+        </div>
+      </div>
+    </div>
     <input type="hidden" name="entry_url" id="entry_url" value="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}">
     <form method="post" action="confirm.php">
     <table>

@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #222222;">
-  <a class="navbar-brand" href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/top.php?mem_id={{session.mem_id}}">TK Dance Platform</a>
+<nav class="navbar navbar-expand-xl navbar-dark" style="background-color: #222222;">
+  <a class="navbar-brand" href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/top.php?mem_id={{session.mem_id}}" style="font-size: 30px;  font-weight:bold;">TK Dance Platform</a>
   
   {# ハンバーガーメニュー #}
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,47 +8,46 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      {# <li class="nav-item active">
         <a class="nav-link" href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/lesson_list.php?mem_id={{session.mem_id}}">Lessons<span class="sr-only">(current)</span></a>
-      </li>
+      </li> #}
       <li class="nav-item">
         <a class="nav-link" href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/item_list.php?mem_id={{session.mem_id}}">Goods</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Studio Access</a>
+        <a class="nav-link" href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/contact_form.php">Contact</a>
       </li>
+    </ul>
+
+    <ul class="navbar-nav">
+      {% if session.login_flg == '1' %}
       <li class="nav-item">
         <a class="nav-link" href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/cart.php?mem_id={{session.mem_id}}">Cart</a>
       </li>
-      {% if session.login_flg == '1' %}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            🏠
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/mypage.php?mem_id={{session.mem_id}}">MyPage</a>
-            <a class="dropdown-item" href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/logout.php">logout</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Configuration⚙</a>
-          </div>
-        </li>
-      {% else %}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Login
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/regist.php">Sign Up 🔰</a>
-          <a class="dropdown-item" href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/login_form.php">Login Page</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         Home
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/mypage.php?mem_id={{session.mem_id}}">MyPage</a>
+          <a class="dropdown-item" href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/logout.php">Logout</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Configuration⚙</a>
-          </div>
-        </li>
+        </div>
+      </li>
+      {% else %}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Login
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/login_form.php">Login</a>
+        <a class="dropdown-item" href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/regist.php">Sign Up 🔰</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Configuration⚙</a>
+        </div>
+      </li>
       {% endif %}
     </ul>
-    {# <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form> #}
   </div>
 </nav>

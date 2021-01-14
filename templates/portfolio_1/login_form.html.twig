@@ -20,31 +20,38 @@
     <div id="nav">
       {% include 'navbar.html.twig' %}
     </div>
-    <input type="hidden" name="entry_url" id="entry_url" value="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}">
-    <form method="post" action="login.php">
-      <table>
-        <div>
-        <tr>
-          <th>メールアドレス<span class="red">*</span></th>
-          <td>
-          <input type="text" name="email" value="{{dataArr.email}}"  size="40">
-          {% if errArr.email | length > 0 %}<br><span class="red">{{errArr.email}}</span>{% endif %}
-          </td>
-        </tr>
+    <div class="jumbotron" style="margin: 0 auto; background: url('../img/top-wrapper.jpg') center no-repeat; background-size: cover; margin-bottom: 100px;">
+      <div class="container">
+        <h1 style="font-family: 'Kaushan Script', cursive; color:white; text-align: center;">Welcome to TK Dance Platform!</h1>
+        <div class="container" style="text-align: center;">
+          <a class="btn btn-dark btn-sm" href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/login_form.php">ログイン</a>
+          <a class="btn btn-dark btn-sm" href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/regist.php">無料新規登録</a>
         </div>
-
-        <tr>
-          <th>パスワード<span class="red">*</span></th>
-          <td>
-          <input type="password" name="password" value="{{dataArr.password}}"  size="40">
-          {% if errArr.password | length > 0 %}<br><span class="red">{{errArr.password}}</span>{% endif %}
-          </td>
-        </tr>
-      </table>
-      {% if errArr.auth | length > 0 %}<br><span class="red">{{errArr.auth}}</span>{% endif %}
-    <div>
-      <input type="submit" name="login" value="ログインする">
+      </div>
     </div>
-    </form>
+    <input type="hidden" name="entry_url" id="entry_url" value="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}">
+    <div class="container">
+      <form method="post" action="login.php">
+        <div class="form-group">
+          <table>
+            <label for="exampleInputEmail1">メールアドレス<span class="red">*</span></label> {% if errArr.email | length > 0 %}<br><span class="red">{{errArr.email}}</span>{% endif %}
+            <input type="email" name="email" value="{{dataArr.email}}"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email address">
+            {# <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> #}
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">パスワード<span class="red">*</span></label> {% if errArr.password | length > 0 %}<br><span class="red">{{errArr.password}}</span>{% endif %}
+            <input type="password" name="password" value="{{dataArr.password}}" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div>
+          {% if errArr.auth | length > 0 %}<br><span class="red">{{errArr.auth}}</span>{% endif %}
+          <div>
+            <input type="submit" name="login" value="ログインする" class="btn btn-outline-dark btn-sm">
+          </div>
+        </table>
+      </form>
+    </div>
   </body>
 </html>

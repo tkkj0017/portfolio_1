@@ -20,28 +20,30 @@
     <div id="nav">
       {% include 'navbar.html.twig' %}
     </div>
-    <input type="hidden" name="entry_url" id="entry_url" value="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}">
-    <h2>お問い合わせフォーム</h2>
-    <form method="post" action="contact_confirm.php">
-    <table>
-    <tr>
-      <th>件名<span class="red">*</span></th>
-      <td>
-      <input type="text" name="subject" value="{{dataArr.subject}}">
-      {% if errArr.subject | length > 0 %}<br><span class="red">{{errArr.subject}}</span>{% endif %}
-      </td>
-    </tr>
-    <tr>
-      <th>本文<span class="red">*</span></th>
-      <td><textarea name="body" rows="4" cols="40">{{dataArr.body}}</textarea>
-      {% if errArr.body | length > 0 %}
-      <br><span class="red">{{errArr.body}}</span>{% endif %}
-      </td>
-    </tr>         
-    </table>
-    <div>
-      <input type="submit" name="contact" value="確認画面へ">
+    <div style="margin-top: 50px;">
+      <input type="hidden" name="entry_url" id="entry_url" value="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}">
+      <h2>お問い合わせフォーム</h2>
+      <form method="post" action="contact_confirm.php">
+      <table>
+      <tr>
+        <th>件名<span class="red">*</span></th>
+        <td>
+        <input type="text" name="subject" value="{{dataArr.subject}}">
+        {% if errArr.subject | length > 0 %}<br><span class="red">{{errArr.subject}}</span>{% endif %}
+        </td>
+      </tr>
+      <tr>
+        <th>本文<span class="red">*</span></th>
+        <td><textarea name="body" rows="4" cols="40">{{dataArr.body}}</textarea>
+        {% if errArr.body | length > 0 %}
+        <br><span class="red">{{errArr.body}}</span>{% endif %}
+        </td>
+      </tr>         
+      </table>
+      <div>
+        <input type="submit" name="contact" class="btn btn-outline-dark btn-sm" value="確認画面へ">
+      </div>
+      </form>
     </div>
-    </form>
   </body>
 </html>
