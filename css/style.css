@@ -178,6 +178,7 @@ div.item{
 	padding-bottom:60px;
 	padding-top:60px;
   display: flex;
+  overflow: visible;
 }
 
 div#wrapper div#lesson_list div.lesson ul{

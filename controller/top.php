@@ -30,10 +30,9 @@ $twig = new \Twig_Environment($loader, [
 //ニュースを取得する
 $dataArr = $news->getNews();
 // 登録日時のフォーマット修正
-
 for ($i = 0; $i < count($dataArr); $i++) {
     $registDate = new \Datetime($dataArr[$i]['regist_date']);
-    $dataArr[$i]['regist_date'] = $registDate->format('Y/m/d H時i分');
+    $dataArr[$i]['regist_date'] = $registDate->format('Y/m/d H時');
 }
 
 $context = [];
