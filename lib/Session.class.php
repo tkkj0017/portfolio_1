@@ -58,7 +58,4 @@ class Session{
     return $res;
   }
 
-  private function deleteSession(){
-    
-  }
 }

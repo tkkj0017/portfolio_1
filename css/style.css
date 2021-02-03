@@ -10,7 +10,7 @@ ul{
 
 li{
   list-style-type: none;
-  padding: 0 5px 0 5px;
+  padding: 0 3px 0 3px;
 }
 
 .font-small {
@@ -61,24 +61,22 @@ div#nav{
 } */
 
 div#nav ul{
-  overflow: hidden;
+  /* ドロップダウンが動かない原因 */
+  /* overflow: hidden; */
   margin-top: 0;
   padding-left: 0;
 }
 
 div#nav li{
   float: left;
-  width: 160px;
+  width: 100px;
 }
 
-div#nav li:first-child{
-  width: 150px;
-}
 
 div#nav a{
   display: block;
-  padding: 15px 0;
-  font-size: 25px;
+  padding: 10px 0;
+  font-size: 20px;
   text-align: center;
   letter-spacing: 1px;
   text-decoration: none;
