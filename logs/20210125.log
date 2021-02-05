@@ -1,0 +1,2 @@
+[SQL_LOG:2021-01-25 16:14:44]: SELECT news_id, title, body, regist_date, update_date  FROM  news  WHERE  delete_flg = ?   ORDER BY  regist_date DESC    [0]
+[SQL_LOG:2021-01-25 16:15:36]: SELECT news_id, title, body, regist_date, update_date  FROM  news  WHERE  delete_flg = ?   ORDER BY  regist_date DESC    [0]
