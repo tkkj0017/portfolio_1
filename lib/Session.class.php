@@ -57,5 +57,4 @@ class Session{
     $res = $this->db->insert($table, $insData);
     return $res;
   }
-
 }

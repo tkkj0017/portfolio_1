@@ -16,7 +16,8 @@
     <link href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
 
     {# Font Awesome #}
-    {# <script src="https://kit.fontawesome.com/fd25b5e20c.js" crossorigin="anonymous"></script> #}
+    <script src="https://kit.fontawesome.com/fd25b5e20c.js" crossorigin="anonymous"></script>
+    
     <title>トップページ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
@@ -29,19 +30,6 @@
       <div class="category_menu">
         {% include 'category.html.twig' %}
       </div>
-      {# {% if session.login_flg == '1' %}
-        <div>
-          ようこそ {{session.user_id}} さん
-        </div>
-      {% endif %}
-      <div id="item_search">
-        <form method="post" action="item_search.php">
-          商品検索<input type="text" name="search_word" value="{{post.search_word}}"><input type="submit" name="item_search" value="検索">
-        </form> 
-        {% if errArr | length > 0 %}
-        <p><span class="red">{{errArr}}</span></p>
-        {% endif %}
-      </div> #}
       <div id="item_list">
         <div id="item_search">
           <form method="post" action="item_search.php">

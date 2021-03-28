@@ -27,11 +27,6 @@ $twig = new \Twig_Environment($loader, [
   'cache' => Bootstrap::CACHE_DIR
 ]);
 
-
-// SessionKeyを見て、DBへの登録状態をチェックする
-// customer_idに自分の情報を入れてあげる
-// $loginses->checkSession();
-
 $ctg_id = (isset($_GET['ctg_id']) === true && preg_match('/^[0-9]+$/', $_GET['ctg_id']) === 1) ? $_GET['ctg_id'] : '';
 
 // エラ〜メッセージの定義(商品検索用)

@@ -30,9 +30,6 @@
           {% if dataArr | length == 0 %}
             <p>カートに商品は入っていません</p>
           {% else %}
-          {# {% if errArr | length > 0 %}
-            <p><span class="red">{{errArr}}</span></p>
-          {% endif %} #}
             <form method="post" action="order_confirm.php?mem_id={{session.mem_id}}">
             <div class="item">
               {% for value in dataArr %} 
@@ -41,7 +38,6 @@
                   <li class="image"><img src="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}img/{{value.image}}" alt="{{value.item_name}}" class="img-fluid rounded"></li>
                   <li class="name">{{value.item_name}}</li>
                   <li class="num">&yen;{{value.price}} × 
-                  {# <input type="number" min="1" max="100" value="{{value.num}}" id="num"> #}
                   <select name='num' id="num">
                   {% for index, label in numArr %}
                     <option value="{{index}}" {% if value.num == index %} selected {% endif %}>{{label}}</option>
@@ -49,13 +45,7 @@
                   </select>
                   点</li>
                   <input type="submit" name="num-change" value="  数量を変更する" class="btn btn-outline-dark btn-sm">
-                  {# アイテムの金額 × 数量の積を格納する変数productPriceを使用 #}
-                  {# <div id="like">
-                    <i class="fas fa-heart fa-lg"></i><span>{{value.likeCnt}}</span>
-                  </div> #}
-
                   <li class="sub_total_price" id="sub_total_price">&yen;{{value.sub_total_price}}</li>
-
                   <li><a href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/cart.php?crt_id={{value.crt_id}}">削除</a></li>
                 </ul>
               {% endfor %}

@@ -42,19 +42,8 @@ $item_id = (!empty($_POST['item_id']) === true) ? $_POST['item_id'] : '';
 $num = (!empty($_POST['num']) === true) ? $_POST['num'] : '';
 $errArr = '';
 
-// // 二重リロード対策
-// // POSTされたトークンを取得
-// $token = isset($_POST["token"]) ? $_POST["token"] : "";
-// // セッション変数のトークンを取得
-// $session_token = isset($_SESSION["token"]) ? $_SESSION["token"] : "";
-// // セッション変数のトークンを削除
-// unset($_SESSION["token"]);
-// // POSTされたトークンとセッション変数のトークンを比較
-// if(($token == "" && $token != $session_token)){
-//   $errArr = 'ERROR: 不正な更新処理です。';
-// }
-// アイテム単品の価格を取得
 
+// アイテム単品の価格を取得
 // item_idが設定されていれば、ショッピングカートに登録する
 if($item_id !== '' && $num !== ''){
   $price = $item->getItemPrice($item_id);
@@ -86,18 +75,9 @@ if($crt_id !== ''){
   $res = $cart->delCartData($crt_id);
 }
 
-// for($i = 0; $i < count($dataArr)-1 ; $i++){
-//   // 各商品のいいね数を取得
-//   $item_id = $dataArr[$i]['item_id'];
-//   $dataArr['likeCnt'] = $like->countLike($item_id);
-//   // 各商品をいいねしているか判別
-// }
-
 // カート情報を取得する
 $dataArr = $cart->getCartData($mem_id);
 
-// アイテム数と合計金額を取得する。listは配列をそれぞれの変数に分ける
-// $cartSumAndNumData = $cart->getItemAndSumPrice($mem_id);
 
 list($sumNum, $sumPrice) = $cart->getSumPriceNum($mem_id);
 // アイテム毎の数量と合計金額を取得する

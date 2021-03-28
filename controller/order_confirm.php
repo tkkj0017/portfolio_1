@@ -53,9 +53,6 @@ switch($mode){
     
     // カート情報取得
     $cartArr = $cart->getCartData($mem_id);
-
-      // var_dump($dataArr);
-      // var_dump($res);
     
     // 合計アイテム数と合計金額を取得
     list($sumNum, $sumPrice) = $cart->getSumPriceNum($mem_id);

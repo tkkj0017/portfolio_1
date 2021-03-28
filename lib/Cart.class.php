@@ -70,6 +70,7 @@ class Cart{
   
   //合計金額と合計アイテム数を取得する
   public function getSumPriceNum($mem_id){
+    
     // 合計金額
     // SELECT
     // SUM(i.price) AS totalPrice ";

@@ -28,14 +28,13 @@ class Orders{
   }
 
   // 売上データを消去する(注文を取り消す)
+  // 未完成
   public function deleteOrders(){
 
     $table = ' order ';
     $dataArr = [
       
     ];
-
-
   }
 
 }

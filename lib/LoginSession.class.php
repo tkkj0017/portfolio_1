@@ -25,8 +25,7 @@ class LoginSession{
   }
 
   public function checkSession($mem_id='', $user_name= ''){
-    //セッションIDのチェック
-    // $this->selectSession($mem_id);
+
     //セッションIDがある(過去にショッピングカートに来た事がある)
     if($this->selectSession($mem_id) !== false){
       $_SESSION['login_flg'] = '1';

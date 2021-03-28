@@ -32,10 +32,6 @@ $twig = new \Twig_Environment($loader, [
   'cache' => Bootstrap::CACHE_DIR
 ]);
 
-// // カート追加の二重送信防止対策
-// $token = uniqid('', true);;
-// $_SESSION['token'] = $token;
-
 //item_idを取得する //三項演算子
 $item_id = (isset($_GET['item_id']) === true && preg_match('/^\d+$/', $_GET['item_id']) === 1) ? $_GET['item_id'] : '';
 
