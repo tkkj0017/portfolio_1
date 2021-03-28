@@ -32,13 +32,20 @@
     <input type="hidden" name="entry_url" id="entry_url" value="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}">
     <div class="container">
       <form method="post" action="login.php">
-        <div class="form-group">
-          <table>
-            <label for="exampleInputEmail1">メールアドレス<span class="red">*</span></label> {% if errArr.email | length > 0 %}<br><span class="red">{{errArr.email}}</span>{% endif %}
+        <table>
+          <div class="form-group">
+            <label for="exampleInputEmail1">メールアドレス<span class="red">*</span></label> 
+            {% if errArr.email | length > 0 %}
+              <br><span class="red">{{errArr.email}}</span>
+            {% endif %}
             <input type="email" name="email" value="{{dataArr.email}}"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email address">
+            {# <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> #}
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">パスワード<span class="red">*</span></label> {% if errArr.password | length > 0 %}<br><span class="red">{{errArr.password}}</span>{% endif %}
+            <label for="exampleInputPassword1">パスワード<span class="red">*</span></label>
+            {% if errArr.password | length > 0 %}
+              <br><span class="red">{{errArr.password}}</span>
+            {% endif %}
             <input type="password" name="password" value="{{dataArr.password}}" class="form-control" id="exampleInputPassword1" placeholder="Password">
           </div>
           <div class="form-group form-check">

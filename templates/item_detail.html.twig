@@ -40,9 +40,10 @@
               <dd>&yen;{{itemData.price|number_format(0, '.', ',')}}</dd>
               <dt>数量</dt>
               <dd>
+              {# <input type="number" name="num" min="1" max="100" value="{{num}}"> #}
               <select name='num'>
               {% for index, label in numArr %}
-                <option value="{{index}}" {% if dataArr.num == index %} selected {% endif %}>{{label}}</option>
+                <option value="{{index}}" {% if itemData.num == index %} selected {% endif %}>{{label}}</option>
               {% endfor %}
               </select>
               点</dd>
@@ -52,6 +53,8 @@
             <input type="button" class="btn btn-outline-dark btn-sm" name="back" value="商品一覧へ戻る" onclick="history.back(); return false;">
             {# ログイン時のみ表示 #}
             {% if session.login_flg == '1' %}
+              {# 二重送信防止対策 #}
+              {# <input type="hidden" name="token" value="{{token}}"> #}
               {# カートに入れる #}
               <input type="submit" name="cart_in" class="btn btn-outline-dark btn-sm" value="カートへ入れる">
               {# お気に入り登録をする #}

@@ -16,8 +16,7 @@
     <link href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}css/style.css" rel="stylesheet">
 
     {# Font Awesome #}
-    <script src="https://kit.fontawesome.com/fd25b5e20c.js" crossorigin="anonymous"></script>
-    
+    {# <script src="https://kit.fontawesome.com/fd25b5e20c.js" crossorigin="anonymous"></script> #}
     <title>トップページ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
@@ -30,25 +29,35 @@
       <div class="category_menu">
         {% include 'category.html.twig' %}
       </div>
+
       <div id="item_list">
-        <div id="item_search">
+        <div id="item_search" class="container mb-4">
           <form method="post" action="item_search.php">
-            商品検索<input type="text" name="search_word" style="width: 60px height: 22px;" value="{{post.search_word}}"><input type="submit" class="btn btn-outline-dark btn-sm" name="item_search" value="検索">
+            <input type="text" name="search_word" style="width: 60px height: 22px;" value="{{post.search_word}}">
+            <input type="submit" class="btn btn-outline-dark btn-sm" name="item_search" value="商品検索">
           </form> 
           {% if errArr | length > 0 %}
             <p><span class="red">{{errArr}}</span></p>
           {% endif %}
         </div>
-        <div class="item">
-          {% for value in dataArr %}
-            <ul>
-              <li class="image"><a href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/item_detail.php?item_id={{value.item_id}}"><img src="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}img/{{value.image}}" class="img-fluid rounded" alt="{{value.item_name}}"></a></li>
-              <li class="name"><a href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/item_detail.php?item_id={{value.item_id}}">{{value.item_name}}</a></li>
-              <li class="price">&yen;{{value.price|number_format(0, '.', ',')}}</li>
-              
-              <li class="detail"><a href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/item_detail.php?item_id={{value.item_id}}">詳細</a></li>
-            </ul>
-          {% endfor %}
+        <div class="item container">
+          <div class="row justify-content-left">
+            {% for value in dataArr %}
+              <div class="col-md-12 col-lg-4 mb-2">
+                <div class="card">
+                  <div class="card-header">
+                    <a href="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}controller/item_detail.php?item_id={{value.item_id}}">{{value.item_name}}</a>
+                  </div>
+                  <div class="card-body">
+                    <img src="{{constant('portfolio_1\\Bootstrap::ENTRY_URL')}}img/{{value.image}}" class="img-fluid rounded" alt="{{value.item_name}}">
+                  </div>
+                  <div class="price card-body">
+                    &yen;{{value.price|number_format(0, '.', ',')}}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          <div>
         </div>
       </div>
     </div>
